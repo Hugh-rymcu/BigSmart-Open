@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# EDA backups
+*.epro2.bak
+*.epro.bak
+*-Backup/
+Backups/
+
+# Build outputs
+build/
+output/
+
+# Temp
+*.tmp
+*.log
