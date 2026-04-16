@@ -19,6 +19,7 @@ BigSmart-Open/
 ├── hardware/
 │   ├── mainboard/          # 主板 EDA 工程及原理图
 │   └── mics-keys/          # 麦克风按键板 EDA 工程及原理图
+├── enclosure/              # 外壳 3D 设计文件 (Fusion 360)
 ├── docs/                   # 硬件配置文档
 └── README.md
 ```
@@ -30,4 +31,4 @@ BigSmart-Open/
 ## 许可证
 
 - **个人 DIY / 非商业用途**：遵循 [Apache-2.0](LICENSE) 开源许可证。
-- **商业用途**：需取得 RYMCU 商用授权，请联系 admin@rymcu.com 获取授权详情。
+- **商业用途**：需取得 RYMCU 商用授权，请联系 [RYMCU 官方](mailto:hugh@rymcu.com) 获取授权详情。
