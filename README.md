@@ -29,4 +29,5 @@ BigSmart-Open/
 
 ## 许可证
 
-本项目采用 [Apache-2.0](LICENSE) 许可证开源。
+- **个人 DIY / 非商业用途**：遵循 [Apache-2.0](LICENSE) 开源许可证。
+- **商业用途**：需取得 RYMCU 商用授权，请联系 admin@rymcu.com 获取授权详情。
