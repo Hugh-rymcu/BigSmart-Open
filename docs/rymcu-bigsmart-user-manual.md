@@ -1,0 +1,412 @@
+# RYMCU BigSmart 用户详细使用手册
+
+## 1. 使用前准备
+
+### 1.1 物品清单
+
+| 项目 | 用途 |
+|------|------|
+| RYMCU BigSmart 开发板 | 主设备 |
+| USB Type-C 数据线 | 供电、串口日志、固件烧录 |
+| 5V USB 电源或电脑 USB 口 | 供电 |
+| MicroSD 卡 | 存放 MP3、NES ROM 等资源 |
+| 蓝牙 HID 手柄 | NES 游戏控制，可选 |
+| 2.4G Wi-Fi 网络 | 小智联网、网络电台、MQTT 等功能 |
+
+### 1.2 注意事项
+
+- 使用可传输数据的 USB 线，只有充电功能的线无法烧录或查看串口。
+- MicroSD 卡建议格式化为 FAT32。
+- ESP32-S3 只支持 2.4G Wi-Fi，请不要选择 5G-only 网络。
+- 摄像头、音频、屏幕和 Wi-Fi 都会占用较多内存，开发调试时建议先验证基础功能，再逐项打开高级功能。
+- 本手册的软件操作以 `E:\RYMCU\xiaozhi` 中的 BigSmart 小智固件为参考；如果你使用其他固件，按键和菜单行为可能不同。
+
+## 2. 开发环境
+
+### 2.1 推荐环境
+
+| 工具 | 建议版本/说明 |
+|------|---------------|
+| ESP-IDF | 5.4 及以上 |
+| IDE | VSCode、Cursor 或命令行 |
+| 串口工具 | ESP-IDF Monitor、PuTTY、MobaXterm 或其他串口终端 |
+| 固件工程 | `E:\RYMCU\xiaozhi` |
+| 硬件资料 | 当前仓库 `E:\RYMCU\BigSmart-Open` |
+
+### 2.2 获取工程
+
+硬件开源资料位于当前仓库：
+
+```text
+E:\RYMCU\BigSmart-Open
+```
+
+小智固件参考工程位于：
+
+```text
+E:\RYMCU\xiaozhi
+```
+
+## 3. 固件编译与烧录
+
+### 3.1 使用 ESP-IDF 编译
+
+进入小智固件工程：
+
+```powershell
+cd E:\RYMCU\xiaozhi
+idf.py set-target esp32s3
+idf.py build
+```
+
+### 3.2 烧录固件
+
+将 BigSmart 通过 USB 连接电脑，确认串口号后执行：
+
+```powershell
+idf.py -p COM端口 flash monitor
+```
+
+例如：
+
+```powershell
+idf.py -p COM8 flash monitor
+```
+
+### 3.3 使用合并固件烧录
+
+小智工程中提供合并固件示例：
+
+```text
+E:\RYMCU\xiaozhi\bin\xiaozhi-V2.3.5-merged.bin
+```
+
+可使用 ESP-IDF、esptool 或图形化烧录工具写入 ESP32-S3。若使用命令行，常见方式为：
+
+```powershell
+esptool.py --chip esp32s3 -p COM端口 -b 460800 write_flash 0x0 bin\xiaozhi-V2.3.5-merged.bin
+```
+
+### 3.4 进入下载模式
+
+如果自动下载失败，可按以下方式手动进入下载模式：
+
+1. 按住 Boot 键。
+2. 复位或重新上电。
+3. 松开 Boot 键。
+4. 重新执行烧录命令。
+
+## 4. 首次启动与配网
+
+### 4.1 启动检查
+
+烧录完成后设备会重启。正常情况下可以看到：
+
+- 屏幕亮起并显示小智相关界面。
+- 串口日志打印板级初始化信息。
+- SD 卡存在时，日志显示挂载到 `/sdcard`。
+- Wi-Fi 未配置时，设备进入配网流程。
+
+### 4.2 Wi-Fi 配网
+
+小智参考工程包含 BluFi 配网文档。典型流程：
+
+1. 编译时启用 `WiFi Configuration Method -> Esp Blufi`。
+2. 设备首次启动且没有保存的 Wi-Fi 时自动进入配网。
+3. 手机使用 EspBlufi App 或兼容 BluFi 客户端搜索设备。
+4. 连接设备后输入 2.4G Wi-Fi 的 SSID 和密码。
+5. 设备连接成功后会保存配置，后续自动联网。
+
+如果固件进入运行态后需要重新配网，可使用以下方式之一：
+
+- 设备启动阶段单击 Boot 键进入配网。
+- 通过 MCP 工具 `self.system.reconfigure_wifi` 请求重新配网。
+- 清除 NVS 或重新烧录擦除数据后重新启动。
+
+## 5. 按键与基础交互
+
+| 操作 | 功能 |
+|------|------|
+| 电源键长按约 3 秒 | 开机/关机，取决于电源管理电路状态 |
+| Boot 键单击 | 启动阶段进入配网；运行时切换对话状态 |
+| Boot 键双击 | 在空闲状态切换设备侧 AEC 开关，需固件启用 `CONFIG_USE_DEVICE_AEC` |
+| Boot 键长按约 3 秒 | 进入 NES 游戏模式 |
+| GPIO10/PTT 键按下 | 开始监听语音 |
+| GPIO10/PTT 键松开 | 结束监听语音 |
+| 触摸屏点击/滑动 | 取决于当前固件界面和应用逻辑 |
+
+## 6. 语音助手使用
+
+### 6.1 对话
+
+1. 确保设备已连接 Wi-Fi。
+2. 单击 Boot 键切换到对话/监听状态，或按住 GPIO10 PTT 键开始说话。
+3. 对设备说出问题或指令。
+4. 松开 PTT 键或等待设备结束监听。
+5. 设备通过扬声器播报回复，屏幕同步显示状态。
+
+### 6.2 AEC 切换
+
+设备侧 AEC 用于抑制扬声器回声。固件启用后，在空闲状态双击 Boot 键可切换 AEC。若语音识别时设备自己的播报声容易被再次采集，可尝试开启 AEC；若环境较简单，也可以关闭以降低处理开销。
+
+## 7. SD 卡使用
+
+### 7.1 格式与目录
+
+推荐将 MicroSD 卡格式化为 FAT32，并按需创建目录：
+
+```text
+/sdcard
+├── music
+│   ├── song1.mp3
+│   └── song2.mp3
+├── test.mp3
+└── nes
+    ├── game1.nes
+    └── game2.nes
+```
+
+### 7.2 SD 卡挂载检查
+
+启动日志中若出现 `SD card mounted at /sdcard`，说明挂载成功。也可以调用 `self.media.list_mp3_files` 检查是否能读取 MP3 文件。
+
+## 8. 本地 MP3 播放
+
+### 8.1 支持能力
+
+| 功能 | MCP 工具 |
+|------|----------|
+| 播放指定 MP3 | `self.media.play_mp3` |
+| 停止播放 | `self.media.stop_mp3` |
+| 列出 MP3 文件 | `self.media.list_mp3_files` |
+| 播放测试文件 | `self.media.play_test_mp3` |
+| 查询播放状态 | `self.media.get_mp3_state` |
+| 下一首 | `self.media.play_next` |
+| 上一首 | `self.media.play_previous` |
+
+### 8.2 示例
+
+播放 SD 卡中的音乐：
+
+```json
+{
+  "tool": "self.media.play_mp3",
+  "arguments": {
+    "filepath": "/sdcard/music/song1.mp3"
+  }
+}
+```
+
+列出 `/sdcard` 下的 MP3 文件：
+
+```json
+{
+  "tool": "self.media.list_mp3_files",
+  "arguments": {
+    "directory": "/sdcard"
+  }
+}
+```
+
+## 9. 网络电台
+
+联网后可使用网络电台功能。常用工具：
+
+| 功能 | MCP 工具 |
+|------|----------|
+| 播放电台 | `self.radio.play_url` |
+| 停止电台 | `self.radio.stop` |
+| 查询状态 | `self.radio.get_status` |
+
+示例：
+
+```json
+{
+  "tool": "self.radio.play_url",
+  "arguments": {
+    "station_name": "动感101"
+  }
+}
+```
+
+## 10. NES 游戏模式
+
+### 10.1 准备 ROM
+
+在 SD 卡根目录创建 `nes` 文件夹，并放入 `.nes` 文件：
+
+```text
+/sdcard/nes
+├── Super Mario Bros.nes
+├── Contra.nes
+└── Tetris.nes
+```
+
+### 10.2 进入游戏
+
+1. 确保设备处于空闲状态。
+2. 长按 Boot 键约 3 秒。
+3. 屏幕进入 NES 游戏菜单。
+4. 设备会扫描蓝牙 HID 手柄。
+5. 将手柄进入配对模式并等待连接。
+6. 使用手柄选择 ROM 并开始游戏。
+
+### 10.3 手柄操作
+
+| 手柄按键 | 功能 |
+|----------|------|
+| 方向键 | 菜单选择或游戏方向 |
+| A / Start | 菜单中开始游戏 |
+| A | NES A 键 |
+| B | NES B 键 |
+| Start | NES Start |
+| Select | NES Select |
+| Start + Select | 游戏中返回菜单；菜单中退出游戏模式 |
+| Start + Select 短按 | 暂停/继续，取决于当前游戏状态 |
+| L1 + R1 长按约 2 秒 | 重置游戏 |
+
+### 10.4 ROM 兼容性
+
+当前固件文档中列出的 Mapper 支持包括 0、1、2、3、4。若某个游戏黑屏、花屏或卡顿，优先尝试其他 ROM 或更常见的 Mapper 版本。
+
+## 11. RGB 灯与智能家居 MQTT
+
+### 11.1 直接控制 RGB
+
+设置 RGB LED：
+
+```json
+{
+  "tool": "self.light.set_rgb_color",
+  "arguments": {
+    "red": 255,
+    "green": 100,
+    "blue": 50
+  }
+}
+```
+
+关闭 RGB LED：
+
+```json
+{
+  "tool": "self.light.turn_off",
+  "arguments": {}
+}
+```
+
+### 11.2 配置 MQTT
+
+配置 broker：
+
+```json
+{
+  "tool": "self.mqtt.configure",
+  "arguments": {
+    "broker_address": "broker-cn.emqx.io",
+    "port": 1883,
+    "client_id": "bigsmart_001",
+    "use_tls": false
+  }
+}
+```
+
+连接 MQTT：
+
+```json
+{
+  "tool": "self.mqtt.connect",
+  "arguments": {}
+}
+```
+
+订阅灯控主题：
+
+```json
+{
+  "tool": "self.mqtt.subscribe_light",
+  "arguments": {
+    "topic": "home/living_room/light"
+  }
+}
+```
+
+支持的灯控消息示例：
+
+```json
+{"state":"ON","brightness":80,"color":{"r":255,"g":100,"b":50}}
+```
+
+### 11.3 发布控制消息
+
+```json
+{
+  "tool": "self.mqtt.publish",
+  "arguments": {
+    "topic": "home/living_room/humidifier",
+    "payload": "{\"state\":\"ON\"}",
+    "qos": 0
+  }
+}
+```
+
+## 12. IMU 姿态与晃动检测
+
+BigSmart 板载 QMI8658 六轴传感器。固件启动后会周期读取传感器数据，并启动晃动检测。可通过 MCP 工具读取姿态角、加速度和陀螺仪数据：
+
+```json
+{
+  "tool": "self.imu.get_attitude_angles",
+  "arguments": {}
+}
+```
+
+可用于以下场景：
+
+- 晃动唤醒或切换界面。
+- 体感控制小游戏。
+- 设备姿态显示。
+- 交互装置触发条件。
+
+## 13. 摄像头使用
+
+BigSmart 使用 GC0308 摄像头，硬件支持 640 x 480 @ 16 FPS。参考固件采用懒加载方式：启动阶段不立即初始化摄像头，首次请求摄像头能力时才初始化，以降低启动阶段内存压力。
+
+使用建议：
+
+- 确保固件启用 GC0308 相关配置。
+- 需要图像能力时再调用摄像头，避免与音频、Wi-Fi、大型 UI 同时抢占内存。
+- 若画面方向异常，可检查固件中的镜像和翻转设置。
+
+## 14. 常见问题
+
+| 问题 | 可能原因 | 处理方法 |
+|------|----------|----------|
+| 电脑识别不到串口 | USB 线仅供电、驱动缺失、设备未上电 | 更换数据线，安装驱动，检查电源 |
+| 烧录失败 | 未进入下载模式或串口被占用 | 按 Boot + 复位进入下载模式，关闭串口终端后重试 |
+| 连不上 Wi-Fi | 使用 5G 网络、密码错误、信号弱 | 使用 2.4G Wi-Fi，重新配网，靠近路由器 |
+| 无声音 | 音量过低、功放未使能、音频初始化失败 | 查看串口日志，确认 ES8311/ES7210 初始化正常 |
+| 语音识别差 | 环境噪声大、离麦克风太远、AEC 状态不合适 | 靠近设备说话，尝试双击 Boot 切换 AEC |
+| SD 卡无法挂载 | 未格式化 FAT32、接触不良、卡损坏 | 重新格式化，重新插拔，更换 SD 卡 |
+| 找不到 MP3 | 路径错误或文件格式不支持 | 使用绝对路径，确认文件后缀为 `.mp3` |
+| 找不到 NES ROM | 未放入 `/sdcard/nes` | 创建目录并放入 `.nes` 文件 |
+| 手柄无法连接 | 手柄未进入配对模式或不兼容 HID | 重新进入配对模式，更换标准蓝牙 HID 手柄 |
+| MQTT 连接失败 | broker 地址错误、端口错误、网络不可达 | 查询 `self.mqtt.get_status`，重新配置 broker |
+
+## 15. 硬件维护
+
+- 插拔屏幕、摄像头、麦克风板或其他排线前先断电。
+- 使用电池供电时注意电池极性和充电安全。
+- 外壳文件位于 `enclosure/`，修改结构时注意屏幕、按键、麦克风开孔和扬声器声腔。
+- 二次开发新外设前，先查阅 [硬件配置说明](rymcu-bigsmart-hardware.md) 避免 GPIO 冲突。
+
+## 16. 参考资料
+
+- 本项目硬件说明：[rymcu-bigsmart-hardware.md](rymcu-bigsmart-hardware.md)
+- 小智 BigSmart 固件参考：`E:\RYMCU\xiaozhi`
+- BluFi 配网说明：`E:\RYMCU\xiaozhi\docs\blufi.md`
+- NES 游戏集成说明：`E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\nes_integration.md`
+- MP3 工具说明：`E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\MP3_MCP_TOOLS.md`
+- 智能家居 MQTT 说明：`E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\smart_home_mqtt_usage.md`
+- EchoEar 产品资料参考：https://oshwhub.com/esp-college/echoear
+- ESP32-S3 游戏机流程参考：https://wiki.lckfb.com/zh-hans/szpi-esp32s3/beginner/game-console.html

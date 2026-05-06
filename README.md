@@ -24,9 +24,11 @@ BigSmart-Open/
 └── README.md
 ```
 
-## 硬件文档
+## 文档
 
-详细的硬件配置及引脚分配请参阅 [docs/rymcu-bigsmart-hardware.md](docs/rymcu-bigsmart-hardware.md)。
+- [产品介绍书](docs/rymcu-bigsmart-product-brief.md)
+- [用户详细使用手册](docs/rymcu-bigsmart-user-manual.md)
+- [硬件配置说明](docs/rymcu-bigsmart-hardware.md)
 
 ## 许可证
 
