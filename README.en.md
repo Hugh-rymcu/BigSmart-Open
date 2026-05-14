@@ -44,7 +44,7 @@ BigSmart-Open/
 ## Firmware
 
 - [xiaozhi-V2.3.19-merged.bin](firmware/xiaozhi-V2.3.19-merged.bin)
-- [Firmware flashing notes](firmware/README.md)
+- [Firmware flashing guide](firmware/README.en.md)
 
 ## License
 
