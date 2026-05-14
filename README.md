@@ -20,7 +20,9 @@ BigSmart-Open/
 │   ├── mainboard/          # 主板 EDA 工程及原理图
 │   └── mics-keys/          # 麦克风按键板 EDA 工程及原理图
 ├── enclosure/              # 外壳 3D 设计文件 (Fusion 360)
-├── docs/                   # 硬件配置文档
+├── docs/                   # 产品、硬件及使用文档
+├── tools/                  # 配套工具
+│   └── video-converter/    # BigSmart 视频转换器
 └── README.md
 ```
 
@@ -29,6 +31,8 @@ BigSmart-Open/
 - [产品介绍书](docs/rymcu-bigsmart-product-brief.md)
 - [用户详细使用手册](docs/rymcu-bigsmart-user-manual.md)
 - [硬件配置说明](docs/rymcu-bigsmart-hardware.md)
+- [视频转换器使用说明](docs/rymcu-bigsmart-video-converter.md)
+- [Video Converter User Guide](docs/rymcu-bigsmart-video-converter-en.md)
 
 ## 许可证
 
