@@ -1,5 +1,7 @@
 # RYMCU BigSmart 视频转换器使用说明
 
+[English](../en/video-converter.md)
+
 RYMCU BigSmart 视频转换器用于把常见视频文件转换为 BigSmart 固件可播放的资源文件。转换完成后会生成同名的 `.mjpg`、`.mp3` 和 `.fps` 文件，将它们复制到 SD 卡的 `/videos` 目录即可在设备端播放。
 
 ## 工具位置

@@ -1,38 +1,44 @@
 # RYMCU BigSmart 开发板
 
-基于 **ESP32-S3-WROOM-1-N16R8** 的智能语音交互开发板，集成音频系统、显示系统、摄像头、传感器等多种外设。
+**中文** | [English](README.en.md)
+
+基于 **ESP32-S3-WROOM-1-N16R8** 的智能语音交互开发板，集成音频系统、显示系统、摄像头、传感器、MicroSD 存储和电池供电等多种外设。
 
 ## 主要特性
 
-- **主控**: ESP32-S3-WROOM-1-N16R8 (16MB Flash + 8MB PSRAM)
+- **主控**: ESP32-S3-WROOM-1-N16R8 (16 MB Flash + 8 MB PSRAM)
 - **音频**: ES8311 DAC + ES7210 四通道 ADC + NS4150B 功放
-- **显示**: 2.4" ST7789 LCD (320×240) + GT911 电容触摸屏
-- **摄像头**: GC0308 (640×480 @ 16fps)
-- **传感器**: QMI8658 六轴 (加速度计 + 陀螺仪)
+- **显示**: 2.4" ST7789 LCD (320 x 240) + GT911 电容触摸屏
+- **摄像头**: GC0308 (640 x 480 @ 16 FPS)
+- **传感器**: QMI8658 六轴加速度计/陀螺仪
 - **存储**: MicroSD 卡槽
 - **其他**: WS2812B RGB LED、电池充电管理、按键输入
 
 ## 目录结构
 
-```
+```text
 BigSmart-Open/
 ├── hardware/
 │   ├── mainboard/          # 主板 EDA 工程及原理图
 │   └── mics-keys/          # 麦克风按键板 EDA 工程及原理图
 ├── enclosure/              # 外壳 3D 设计文件 (Fusion 360)
-├── docs/                   # 产品、硬件及使用文档
-├── tools/                  # 配套工具
+├── docs/
+│   ├── zh/                 # 中文文档
+│   └── en/                 # English documentation
+├── tools/
 │   └── video-converter/    # BigSmart 视频转换器
 └── README.md
 ```
 
 ## 文档
 
-- [产品介绍书](docs/rymcu-bigsmart-product-brief.md)
-- [用户详细使用手册](docs/rymcu-bigsmart-user-manual.md)
-- [硬件配置说明](docs/rymcu-bigsmart-hardware.md)
-- [视频转换器使用说明](docs/rymcu-bigsmart-video-converter.md)
-- [Video Converter User Guide](docs/rymcu-bigsmart-video-converter-en.md)
+| 中文 | English |
+|------|---------|
+| [快速使用指南](docs/zh/quick-start.md) | [Quick Start Guide](docs/en/quick-start.md) |
+| [产品介绍书](docs/zh/product-brief.md) | [Product Brief](docs/en/product-brief.md) |
+| [用户详细使用手册](docs/zh/user-manual.md) | [User Manual](docs/en/user-manual.md) |
+| [硬件配置说明](docs/zh/hardware.md) | [Hardware Configuration](docs/en/hardware.md) |
+| [视频转换器使用说明](docs/zh/video-converter.md) | [Video Converter User Guide](docs/en/video-converter.md) |
 
 ## 许可证
 

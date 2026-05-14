@@ -1,10 +1,12 @@
 # RYMCU BigSmart 产品介绍书
 
+[English](../en/product-brief.md)
+
 ## 产品定位
 
 RYMCU BigSmart 是一款面向 AI 语音交互、嵌入式多媒体、物联网控制和掌机娱乐实验的 ESP32-S3 开源硬件平台。开发板以 ESP32-S3-WROOM-1-N16R8 为核心，集成四麦音频输入、扬声器输出、2.4 英寸触摸彩屏、摄像头、六轴姿态传感器、MicroSD 存储、电池供电与外壳结构文件，适合用于小智 AI 终端、离线/联网语音助手、智能家居中控、便携式媒体播放器和 NES 游戏机原型。
 
-本介绍书面向选型、展示、二次开发和课程教学场景。具体引脚和硬件细节请参阅 [硬件配置说明](rymcu-bigsmart-hardware.md)，上手操作请参阅 [用户详细使用手册](rymcu-bigsmart-user-manual.md)。
+本介绍书面向选型、展示、二次开发和课程教学场景。具体引脚和硬件细节请参阅 [硬件配置说明](hardware.md)，上手操作请参阅 [用户详细使用手册](user-manual.md)。
 
 ## 核心亮点
 
@@ -89,8 +91,8 @@ QMI8658 可读取姿态和晃动事件，摄像头可采集图像，触摸屏和
 | `hardware/mainboard/` | 主板 EDA 工程与原理图 |
 | `hardware/mics-keys/` | 麦克风按键板 EDA 工程与原理图 |
 | `enclosure/` | 外壳 Fusion 360 设计文件 |
-| `docs/rymcu-bigsmart-hardware.md` | 硬件组件、引脚分配和 GPIO 汇总 |
-| `docs/rymcu-bigsmart-user-manual.md` | 开箱、烧录、配网、使用和故障排查 |
+| `docs/zh/hardware.md` | 硬件组件、引脚分配和 GPIO 汇总 |
+| `docs/zh/user-manual.md` | 开箱、烧录、配网、使用和故障排查 |
 
 ## 参考资料
 

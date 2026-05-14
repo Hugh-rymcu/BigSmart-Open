@@ -1,5 +1,7 @@
 # RYMCU BigSmart 开发板硬件配置说明
 
+[English](../en/hardware.md)
+
 ## 概述
 
 RYMCU BigSmart 是一款基于 ESP32-S3 的智能语音交互开发板，集成了音频系统、显示系统、摄像头、传感器等多种外设。本文档详细列出了开发板使用的硬件组件及其 GPIO 引脚分配。

@@ -1,5 +1,7 @@
 # RYMCU BigSmart Video Converter User Guide
 
+[中文](../zh/video-converter.md)
+
 RYMCU BigSmart Video Converter converts common video files into resources that can be played by the BigSmart firmware. After conversion, the tool generates `.mjpg`, `.mp3`, and `.fps` files with the same base name. Copy all three files to the `/videos` directory on the SD card to play them on the device.
 
 ## Tool Location
