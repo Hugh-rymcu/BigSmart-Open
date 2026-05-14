@@ -75,18 +75,18 @@ Example:
 idf.py -p COM8 flash monitor
 ```
 
-### 3.3 Flash a Merged Firmware Image
+### 3.3 Flash the Repository Merged Firmware Image
 
-The Xiaozhi project provides a merged firmware image example:
+This repository provides a BigSmart Xiaozhi merged firmware image:
 
 ```text
-E:\RYMCU\xiaozhi\bin\xiaozhi-V2.3.5-merged.bin
+firmware/xiaozhi-V2.3.19-merged.bin
 ```
 
 You can flash it with ESP-IDF, `esptool.py`, or a GUI flashing tool. A common command-line method is:
 
 ```powershell
-esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 bin\xiaozhi-V2.3.5-merged.bin
+esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
 ```
 
 ### 3.4 Enter Download Mode

@@ -25,6 +25,7 @@ BigSmart-Open/
 ├── docs/
 │   ├── zh/                 # Chinese documentation
 │   └── en/                 # English documentation
+├── firmware/               # Prebuilt merged firmware images
 ├── tools/
 │   └── video-converter/    # BigSmart video converter
 └── README.md
@@ -39,6 +40,11 @@ BigSmart-Open/
 | [User Manual](docs/en/user-manual.md) | [用户详细使用手册](docs/zh/user-manual.md) |
 | [Hardware Configuration](docs/en/hardware.md) | [硬件配置说明](docs/zh/hardware.md) |
 | [Video Converter User Guide](docs/en/video-converter.md) | [视频转换器使用说明](docs/zh/video-converter.md) |
+
+## Firmware
+
+- [xiaozhi-V2.3.19-merged.bin](firmware/xiaozhi-V2.3.19-merged.bin)
+- [Firmware flashing notes](firmware/README.md)
 
 ## License
 

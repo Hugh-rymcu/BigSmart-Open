@@ -42,7 +42,29 @@ Notes:
 - ESP32-S3 supports 2.4G Wi-Fi only.
 - On startup, the firmware initializes SD card, display, touch, Wi-Fi manager, buttons, battery monitor, IMU, RGB LED, and MCP tools.
 
-## 3. Power On and First Boot
+## 3. Firmware Flashing
+
+This repository includes a prebuilt BigSmart Xiaozhi merged firmware image:
+
+```text
+firmware/xiaozhi-V2.3.19-merged.bin
+```
+
+Use ESP-IDF, `esptool.py`, or a GUI flashing tool to write it to the ESP32-S3. Command-line example:
+
+```powershell
+esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+```
+
+For example, if the serial port is `COM8`:
+
+```powershell
+esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+```
+
+If automatic download mode fails, hold Boot, reset or power-cycle the board, release Boot, and flash again.
+
+## 4. Power On and First Boot
 
 1. Insert the MicroSD card. It is best to prepare `/music`, `/videos`, `/background`, and `/nes` in advance.
 2. Connect the board to a computer or 5 V power supply with USB Type-C.
@@ -67,7 +89,7 @@ When the SD card mounts successfully, the firmware checks and creates:
 /sdcard/background
 ```
 
-## 4. Launcher and Apps
+## 5. Launcher and Apps
 
 The firmware enters the Launcher after startup. According to `E:\RYMCU\xiaozhi\main\application.cc`, common entries include:
 
@@ -86,11 +108,11 @@ The firmware enters the Launcher after startup. According to `E:\RYMCU\xiaozhi\m
 
 Use the touch screen to open apps, go back, select files, and adjust settings. The Launcher back button is managed by firmware, so each app may show a different return control.
 
-## 5. Wi-Fi Setup
+## 6. Wi-Fi Setup
 
 BigSmart uses the board-level `WifiBoard` and the Settings app for network setup. If no saved Wi-Fi credentials exist, the firmware opens the Settings network page after Launcher initialization.
 
-### 5.1 On-screen Wi-Fi Setup
+### 6.1 On-screen Wi-Fi Setup
 
 1. Open `Settings`.
 2. Enter the network/Wi-Fi page.
@@ -98,11 +120,11 @@ BigSmart uses the board-level `WifiBoard` and the Settings app for network setup
 4. Select a 2.4G Wi-Fi network and enter the password.
 5. Save and wait for connection.
 
-### 5.2 Enter Setup with Boot During Startup
+### 6.2 Enter Setup with Boot During Startup
 
 When the device is still starting, clicking the Boot button enters the board-level Wi-Fi configuration flow and opens the Settings network page.
 
-### 5.3 Reconfigure During Conversation
+### 6.3 Reconfigure During Conversation
 
 BigSmart registers this MCP tool:
 
@@ -112,11 +134,11 @@ self.system.reconfigure_wifi
 
 It ends the current conversation and enters Wi-Fi configuration mode. User confirmation is required before calling it.
 
-### 5.4 Hotspot and BLE Provisioning
+### 6.4 Hotspot and BLE Provisioning
 
 The Settings app also includes entries to start web hotspot provisioning and BLE provisioning. Actual availability depends on the firmware configuration.
 
-## 6. Xiaozhi Server and Connection Settings
+## 7. Xiaozhi Server and Connection Settings
 
 BigSmart firmware reads server settings such as OTA URL, MQTT endpoint, WebSocket URL, client ID, and token from stored settings. Names may differ between firmware versions, but they are usually configured in `Settings`.
 
@@ -130,7 +152,7 @@ Common modes:
 
 After changing server settings, return to the Launcher and reopen Xiaozhi. Reboot the device if needed.
 
-## 7. Button Operations
+## 8. Button Operations
 
 Button behavior comes from `rymcu_bigsmart_board.cc`:
 
@@ -146,7 +168,7 @@ Button behavior comes from `rymcu_bigsmart_board.cc`:
 
 GPIO10 is the PTT button during normal runtime and is also checked during startup for USB disk mode.
 
-## 8. Voice Assistant Quick Use
+## 9. Voice Assistant Quick Use
 
 1. Make sure the device is connected to Wi-Fi.
 2. Open `Xiaozhi` from the Launcher.
@@ -156,7 +178,7 @@ GPIO10 is the PTT button during normal runtime and is also checked during startu
 
 If the device frequently recognizes its own speaker output, double-click Boot while idle to toggle device-side AEC.
 
-## 9. SD Card Layout
+## 10. SD Card Layout
 
 BigSmart mounts the SD card at `/sdcard` using SDMMC 1-line mode:
 
@@ -178,7 +200,7 @@ Recommended layout:
 
 The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music` and `nes` manually if needed.
 
-## 10. Music Playback
+## 11. Music Playback
 
 The `Music` app and MCP tools can play MP3 files from the SD card.
 
@@ -211,7 +233,7 @@ Example call:
 }
 ```
 
-## 11. Video Playback
+## 12. Video Playback
 
 The `Video` app reads this fixed directory:
 
@@ -250,7 +272,7 @@ Flow:
 4. Open the `Video` app.
 5. Tap a video item to play it.
 
-## 12. USB Disk Mode
+## 13. USB Disk Mode
 
 USB disk mode shares the SD card with a PC as a USB storage device. It is useful for copying music, videos, background images, and ROMs.
 
@@ -269,7 +291,7 @@ Exit:
 
 Note: USB disk mode requires a mounted SD card.
 
-## 13. NES Game Mode
+## 14. NES Game Mode
 
 BigSmart includes an NES emulator entry and is intended to work with a Bluetooth HID gamepad.
 
@@ -298,11 +320,11 @@ Exit or return:
 
 Mapper support listed in the current firmware documentation includes 0, 1, 2, 3, and 4.
 
-## 14. RGB, IMU, MQTT, and Camera
+## 15. RGB, IMU, MQTT, and Camera
 
 BigSmart firmware also registers local features and MCP tools.
 
-### 14.1 RGB LED
+### 15.1 RGB LED
 
 ```json
 {
@@ -324,11 +346,11 @@ Turn off:
 }
 ```
 
-### 14.2 IMU Attitude and Shake
+### 15.2 IMU Attitude and Shake
 
 The QMI8658 initializes after firmware startup and supports attitude reading and shake detection. Typical uses include motion control, state triggers, and interactive demos.
 
-### 14.3 Smart Home MQTT
+### 15.3 Smart Home MQTT
 
 The firmware includes a SmartHome MQTT client and tools for broker configuration, connect, publish, subscribe, light subscriptions, and humidifier examples.
 
@@ -343,11 +365,11 @@ self.mqtt.subscribe_light
 self.mqtt.humidifier
 ```
 
-### 14.4 Camera
+### 15.4 Camera
 
 The GC0308 camera is lazily initialized. It is not initialized at boot; it is initialized the first time the Camera app or a camera request needs it. This reduces memory pressure during startup.
 
-## 15. Troubleshooting
+## 16. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
@@ -364,7 +386,7 @@ The GC0308 camera is lazily initialized. It is not initialized at boot; it is in
 | NES game not found | Put `.nes` files under `/sdcard/nes` |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 16. Next Reading
+## 17. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)
