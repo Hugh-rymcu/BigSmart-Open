@@ -2,7 +2,7 @@
 
 [English](../en/quick-start.md)
 
-本指南面向 **RYMCU BigSmart AI助手**，内容根据 `E:\RYMCU\xiaozhi` 工程中的 `main/boards/rymcu-bigsmart` 板级代码整理。它用于帮助用户快速完成开机、联网、语音交互、SD 卡资源准备、视频播放、音乐播放和 USB 磁盘模式。
+本指南面向 **RYMCU BigSmart AI助手**，它用于帮助用户快速完成开机、联网、语音交互、SD 卡资源准备、视频播放、音乐播放和 USB 磁盘模式。
 
 更完整的编译、烧录和外设说明请参考 [用户详细使用手册](user-manual.md) 与 [硬件配置说明](hardware.md)。
 

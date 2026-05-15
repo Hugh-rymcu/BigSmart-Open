@@ -47,8 +47,6 @@ It is suitable for Xiaozhi AI terminals, offline or connected voice assistants, 
 
 ## Software Capabilities
 
-The BigSmart Xiaozhi firmware under `E:\RYMCU\xiaozhi` can be used as a reference implementation.
-
 | Capability | Description |
 |------------|-------------|
 | Wi-Fi provisioning | Enters provisioning on first boot or when no valid network exists; the Xiaozhi project includes BluFi documentation |
@@ -93,9 +91,3 @@ The QMI8658 provides attitude and shake events, the camera captures images, and 
 | `enclosure/` | Fusion 360 enclosure files |
 | `docs/en/hardware.md` | Hardware components, pin assignments, and GPIO summary |
 | `docs/en/user-manual.md` | Unboxing, flashing, network setup, operation, and troubleshooting |
-
-## References
-
-- Xiaozhi BigSmart firmware reference: `E:\RYMCU\xiaozhi`
-- EchoEar product reference: https://oshwhub.com/esp-college/echoear
-- ESP32-S3 game console workflow reference: https://wiki.lckfb.com/zh-hans/szpi-esp32s3/beginner/game-console.html

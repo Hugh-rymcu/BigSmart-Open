@@ -32,50 +32,12 @@
 | ESP-IDF | 5.4 or later |
 | IDE | VSCode, Cursor, or command line |
 | Serial terminal | ESP-IDF Monitor, PuTTY, MobaXterm, or another serial terminal |
-| Firmware project | `E:\RYMCU\xiaozhi` |
-| Hardware repository | `E:\RYMCU\BigSmart-Open` |
+| Firmware project | / |
+| Hardware repository | / |
 
-### 2.2 Project Locations
+## 3. Firmware  Flashing
 
-Hardware open files are in this repository:
-
-```text
-E:\RYMCU\BigSmart-Open
-```
-
-The Xiaozhi firmware reference project is located at:
-
-```text
-E:\RYMCU\xiaozhi
-```
-
-## 3. Firmware Build and Flashing
-
-### 3.1 Build with ESP-IDF
-
-Enter the Xiaozhi firmware project:
-
-```powershell
-cd E:\RYMCU\xiaozhi
-idf.py set-target esp32s3
-idf.py build
-```
-
-### 3.2 Flash Firmware
-
-Connect BigSmart to the computer through USB, confirm the serial port, then run:
-
-```powershell
-idf.py -p COM_PORT flash monitor
-```
-
-Example:
-
-```powershell
-idf.py -p COM8 flash monitor
-```
-
-### 3.3 Flash the Repository Merged Firmware Image
+### 3.1 Flash the Repository Merged Firmware Image
 
 This repository provides three BigSmart merged firmware images:
 
@@ -93,7 +55,7 @@ You can flash it with ESP-IDF, `esptool.py`, or a GUI flashing tool. A common co
 esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
-### 3.4 Enter Download Mode
+### 3.2 Enter Download Mode
 
 If automatic flashing fails, enter download mode manually:
 
@@ -367,8 +329,3 @@ Suggestions:
 ## 15. References
 
 - Project hardware documentation: [hardware.md](hardware.md)
-- Xiaozhi BigSmart firmware reference: `E:\RYMCU\xiaozhi`
-- BluFi provisioning documentation: `E:\RYMCU\xiaozhi\docs\blufi.md`
-- MP3 tool documentation: `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\MP3_MCP_TOOLS.md`
-- Smart home MQTT documentation: `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\smart_home_mqtt_usage.md`
-- EchoEar product reference: https://oshwhub.com/esp-college/echoear

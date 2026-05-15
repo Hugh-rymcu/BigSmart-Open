@@ -2,7 +2,7 @@
 
 [中文](../zh/quick-start.md)
 
-This guide is written for the **RYMCU BigSmart development board** and is based on the board code under `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart`. It covers first boot, Wi-Fi setup, voice interaction, SD card resources, video playback, music playback, and USB disk mode.
+This guide is written for the **RYMCU BigSmart development board** . It covers first boot, Wi-Fi setup, voice interaction, SD card resources, video playback, music playback, and USB disk mode.
 
 For complete build, flashing, and hardware details, see the [User Manual](user-manual.md) and [Hardware Configuration](hardware.md).
 
