@@ -2,13 +2,15 @@
 
 **中文** | [English](README.en.md)
 
-本目录存放 RYMCU BigSmart 开发板可直接烧录的预编译合并固件。
+本目录存放 RYMCU BigSmart 开发板可直接烧录的预编译合并固件，按固件来源分为 RYMCU 官方、小智 AI 官方和乐鑫科技官方三个版本。
 
 ## 固件文件
 
-| 文件 | 说明 |
-|------|------|
-| `xiaozhi-V2.3.19-merged.bin` | 适用于 ESP32-S3 的 BigSmart 小智合并固件 |
+| 文件 | 来源 | 说明 |
+|------|------|------|
+| `rymcu-V2.3.19-merged.bin` | RYMCU 官方 | RYMCU 针对 BigSmart 整理发布的推荐合并固件 |
+| `xiaozhi-esp32-merged.bin` | 小智 AI 官方 | 对应 [78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32) 主线生态的合并固件 |
+| `espressif-brookesia-merged.bin` | 乐鑫科技官方 | 对应 [espressif/esp-brookesia](https://github.com/espressif/esp-brookesia) 主线生态的合并固件 |
 
 ## 烧录前准备
 
@@ -19,19 +21,26 @@
 
 ## 使用 esptool.py 烧录
 
-在仓库根目录执行：
+默认建议先烧录 RYMCU 官方固件。在仓库根目录执行：
 
 ```powershell
-esptool.py --chip esp32s3 -p COM端口 -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+esptool.py --chip esp32s3 -p COM端口 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
 例如串口为 `COM8`：
 
 ```powershell
-esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
 合并固件需要写入 Flash 偏移地址 `0x0`。
+
+如需体验其他官方生态，可将命令中的文件名替换为：
+
+```text
+firmware\xiaozhi-esp32-merged.bin
+firmware\espressif-brookesia-merged.bin
+```
 
 ## 进入下载模式
 

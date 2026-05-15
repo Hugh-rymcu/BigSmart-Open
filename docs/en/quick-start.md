@@ -44,22 +44,26 @@ Notes:
 
 ## 3. Firmware Flashing
 
-This repository includes a prebuilt BigSmart Xiaozhi merged firmware image:
+This repository includes three BigSmart merged firmware images:
 
 ```text
-firmware/xiaozhi-V2.3.19-merged.bin
+firmware/rymcu-V2.3.19-merged.bin
+firmware/xiaozhi-esp32-merged.bin
+firmware/espressif-brookesia-merged.bin
 ```
+
+The RYMCU official firmware `rymcu-V2.3.19-merged.bin` is recommended as the default.
 
 Use ESP-IDF, `esptool.py`, or a GUI flashing tool to write it to the ESP32-S3. Command-line example:
 
 ```powershell
-esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
 For example, if the serial port is `COM8`:
 
 ```powershell
-esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
 If automatic download mode fails, hold Boot, reset or power-cycle the board, release Boot, and flash again.

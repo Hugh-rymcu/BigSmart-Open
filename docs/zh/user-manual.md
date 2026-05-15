@@ -77,16 +77,20 @@ idf.py -p COM8 flash monitor
 
 ### 3.3 使用仓库内合并固件烧录
 
-当前仓库已提供 BigSmart 小智合并固件：
+当前仓库已提供三份 BigSmart 合并固件：
 
 ```text
-firmware/xiaozhi-V2.3.19-merged.bin
+firmware/rymcu-V2.3.19-merged.bin
+firmware/xiaozhi-esp32-merged.bin
+firmware/espressif-brookesia-merged.bin
 ```
+
+默认建议先烧录 RYMCU 官方固件 `rymcu-V2.3.19-merged.bin`。
 
 可使用 ESP-IDF、esptool 或图形化烧录工具写入 ESP32-S3。若使用命令行，常见方式为：
 
 ```powershell
-esptool.py --chip esp32s3 -p COM端口 -b 460800 write_flash 0x0 firmware\xiaozhi-V2.3.19-merged.bin
+esptool.py --chip esp32s3 -p COM端口 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
 ```
 
 ### 3.4 进入下载模式

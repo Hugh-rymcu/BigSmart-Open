@@ -63,7 +63,9 @@ BigSmart-Open/
 
 ## Firmware
 
-- [xiaozhi-V2.3.19-merged.bin](firmware/xiaozhi-V2.3.19-merged.bin)
+- [RYMCU official firmware](firmware/rymcu-V2.3.19-merged.bin)
+- [Xiaozhi AI official firmware](firmware/xiaozhi-esp32-merged.bin)
+- [Espressif official firmware](firmware/espressif-brookesia-merged.bin)
 - [Firmware flashing guide](firmware/README.en.md)
 
 ## License

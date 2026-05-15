@@ -63,7 +63,9 @@ BigSmart-Open/
 
 ## 固件
 
-- [xiaozhi-V2.3.19-merged.bin](firmware/xiaozhi-V2.3.19-merged.bin)
+- [RYMCU 官方固件](firmware/rymcu-V2.3.19-merged.bin)
+- [小智 AI 官方固件](firmware/xiaozhi-esp32-merged.bin)
+- [乐鑫科技官方固件](firmware/espressif-brookesia-merged.bin)
 - [固件烧录说明](firmware/README.md)
 
 ## 许可证
