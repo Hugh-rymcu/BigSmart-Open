@@ -6,7 +6,7 @@
 
 RYMCU BigSmart is an ESP32-S3 open hardware platform for AI voice interaction, embedded multimedia, IoT control, and handheld gaming experiments. It is built around ESP32-S3-WROOM-1-N16R8 and integrates four-channel microphone input, speaker output, a 2.4-inch touch color display, camera, six-axis motion sensor, MicroSD storage, battery power, and enclosure design files.
 
-It is suitable for Xiaozhi AI terminals, offline or connected voice assistants, smart home controllers, portable media players, and NES handheld prototypes. For pin assignments and hardware details, see [Hardware Configuration](hardware.md). For setup and operation, see the [User Manual](user-manual.md).
+It is suitable for Xiaozhi AI terminals, offline or connected voice assistants, smart home controllers, portable media players, and handheld game prototypes. For pin assignments and hardware details, see [Hardware Configuration](hardware.md). For setup and operation, see the [User Manual](user-manual.md).
 
 ## Highlights
 
@@ -16,7 +16,7 @@ It is suitable for Xiaozhi AI terminals, offline or connected voice assistants, 
 | Four-microphone audio system | ES7210 four-channel ADC + ES8311 DAC + NS4150B amplifier, with device-side AEC reference support |
 | Touch display | 2.4-inch ST7789 LCD, 320 x 240 resolution, with GT911 capacitive touch |
 | Vision capability | GC0308 DVP camera, 640 x 480 YUV422 capture |
-| Portable multimedia | MicroSD card for MP3, NES ROMs, and other resources |
+| Portable multimedia | MicroSD card for MP3, video, image, and game resources |
 | Motion sensing | QMI8658 six-axis IMU for attitude, shake detection, and interaction triggers |
 | Smart home extension | Firmware-side MQTT tools can connect to smart home topics for lights, humidifiers, and other devices |
 | Open hardware completeness | Includes mainboard and microphone/button board schematics, EDA files, and Fusion 360 enclosure files |
@@ -56,7 +56,7 @@ The BigSmart Xiaozhi firmware under `E:\RYMCU\xiaozhi` can be used as a referenc
 | Device-side AEC | When `CONFIG_USE_DEVICE_AEC` is enabled, double-clicking Boot toggles AEC while idle |
 | Local music | Plays MP3 files from `/sdcard`, with play, stop, list, previous, next, and status tools |
 | Internet radio | Plays network audio streams by station name |
-| NES games | Put `.nes` ROMs under `/sdcard/nes`; hold Boot for about 3 seconds to enter the game menu; Bluetooth HID gamepads are supported |
+| Game entry | Opens firmware-provided game-related features from the Launcher |
 | RGB light control | Supports direct RGB color setting and MQTT light-control topics |
 | Smart home MQTT | Supports broker configuration, connect, publish, subscribe, light subscriptions, and humidifier examples |
 | IMU attitude | Reads QMI8658 attitude angles, acceleration, gyroscope data, and shake events |
@@ -78,7 +78,7 @@ The MicroSD card can store MP3 files. Firmware tools support local playback, sto
 
 ### ESP32-S3 Handheld Gaming Experiment
 
-With LCD, speaker, SD card, and Bluetooth HID gamepad support, BigSmart can run an NES emulator workflow: prepare ROMs, enter the game menu, connect a gamepad, choose a game, and exit game mode.
+With LCD, speaker, SD card, and Bluetooth HID gamepad support, BigSmart can be used for ESP32-S3 handheld game experiments and custom game demos.
 
 ### Multi-sensor Interactive Device
 

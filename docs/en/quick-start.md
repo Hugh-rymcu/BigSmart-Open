@@ -2,7 +2,7 @@
 
 [中文](../zh/quick-start.md)
 
-This guide is written for the **RYMCU BigSmart development board** and is based on the board code under `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart`. It covers first boot, Wi-Fi setup, voice interaction, SD card resources, video playback, music playback, USB disk mode, and NES game mode.
+This guide is written for the **RYMCU BigSmart development board** and is based on the board code under `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart`. It covers first boot, Wi-Fi setup, voice interaction, SD card resources, video playback, music playback, and USB disk mode.
 
 For complete build, flashing, and hardware details, see the [User Manual](user-manual.md) and [Hardware Configuration](hardware.md).
 
@@ -33,9 +33,9 @@ Prepare the following items:
 | RYMCU BigSmart development board | Main device |
 | USB Type-C data cable | Power, serial logs, firmware flashing, USB disk mode |
 | 5 V USB power supply or computer USB port | Power |
-| MicroSD card | Music, video, background images, and NES ROMs |
+| MicroSD card | Music, video, background images, and game resources |
 | 2.4G Wi-Fi | Xiaozhi connection, time sync, internet radio, MQTT |
-| Bluetooth HID gamepad | Optional NES controller |
+| Bluetooth HID gamepad | Optional game controller |
 
 Notes:
 
@@ -72,7 +72,7 @@ If automatic download mode fails, hold Boot, reset or power-cycle the board, rel
 
 ## 4. Power On and First Boot
 
-1. Insert the MicroSD card. It is best to prepare `/music`, `/videos`, `/background`, and `/nes` in advance.
+1. Insert the MicroSD card. It is best to prepare `/music`, `/videos`, and `/background` in advance.
 2. Connect the board to a computer or 5 V power supply with USB Type-C.
 3. Hold the power button for about 3 seconds.
 4. After the screen turns on, the Launcher appears and shows `rymcu-bigsmart` and the firmware version.
@@ -167,7 +167,6 @@ Button behavior comes from `rymcu_bigsmart_board.cc`:
 | Hold power for about 3 seconds | Power on/off, depending on the power circuit |
 | Click Boot | During startup, enter Wi-Fi setup; during runtime, toggle Xiaozhi conversation state |
 | Double-click Boot | Toggle device-side AEC while idle, when `CONFIG_USE_DEVICE_AEC` is enabled |
-| Hold Boot for about 3 seconds | Enter NES game mode |
 | Press GPIO10/PTT | Start voice listening when idle or listening |
 | Release GPIO10/PTT | Stop voice listening when listening |
 | Hold GPIO10 during startup | Enter USB disk mode |
@@ -201,10 +200,9 @@ Recommended layout:
 ├── music/          # MP3 music, subdirectories allowed
 ├── videos/         # .mjpg/.mp3/.fps video resources
 ├── background/     # Background images
-└── nes/            # NES ROMs
 ```
 
-The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music` and `nes` manually if needed.
+The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music` manually if needed.
 
 ## 11. Music Playback
 
@@ -280,7 +278,7 @@ Flow:
 
 ## 13. USB Disk Mode
 
-USB disk mode shares the SD card with a PC as a USB storage device. It is useful for copying music, videos, background images, and ROMs.
+USB disk mode shares the SD card with a PC as a USB storage device. It is useful for copying music, videos, background images, and other resources.
 
 Enter USB disk mode:
 
@@ -297,40 +295,11 @@ Exit:
 
 Note: USB disk mode requires a mounted SD card.
 
-## 14. NES Game Mode
-
-BigSmart includes an NES emulator entry and is intended to work with a Bluetooth HID gamepad.
-
-Prepare ROMs:
-
-```text
-/sdcard/nes
-├── game1.nes
-├── game2.nes
-└── game3.nes
-```
-
-Start game mode:
-
-1. Make sure the device is idle.
-2. Hold Boot for about 3 seconds.
-3. Wait for the NES game menu.
-4. Put the Bluetooth HID gamepad into pairing mode.
-5. Use the gamepad to choose a ROM and start the game.
-
-Exit or return:
-
-- Press `Start + Select` in game to return to the menu.
-- Press `Start + Select` in the menu to exit game mode.
-- Hold `L1 + R1` for about 2 seconds to reset the game.
-
-Mapper support listed in the current firmware documentation includes 0, 1, 2, 3, and 4.
-
-## 15. RGB, IMU, MQTT, and Camera
+## 14. RGB, IMU, MQTT, and Camera
 
 BigSmart firmware also registers local features and MCP tools.
 
-### 15.1 RGB LED
+### 14.1 RGB LED
 
 ```json
 {
@@ -352,11 +321,11 @@ Turn off:
 }
 ```
 
-### 15.2 IMU Attitude and Shake
+### 14.2 IMU Attitude and Shake
 
 The QMI8658 initializes after firmware startup and supports attitude reading and shake detection. Typical uses include motion control, state triggers, and interactive demos.
 
-### 15.3 Smart Home MQTT
+### 14.3 Smart Home MQTT
 
 The firmware includes a SmartHome MQTT client and tools for broker configuration, connect, publish, subscribe, light subscriptions, and humidifier examples.
 
@@ -371,11 +340,11 @@ self.mqtt.subscribe_light
 self.mqtt.humidifier
 ```
 
-### 15.4 Camera
+### 14.4 Camera
 
 The GC0308 camera is lazily initialized. It is not initialized at boot; it is initialized the first time the Camera app or a camera request needs it. This reduces memory pressure during startup.
 
-## 16. Troubleshooting
+## 15. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
@@ -389,10 +358,9 @@ The GC0308 camera is lazily initialized. It is not initialized at boot; it is in
 | Video speed is wrong | Make sure the same-name `.fps` file contains an integer frame rate |
 | MP3 playback fails | Use an absolute `/sdcard/...` path and confirm the `.mp3` extension |
 | USB disk mode does not enter | Hold GPIO10 before startup/reset and make sure an SD card is inserted |
-| NES game not found | Put `.nes` files under `/sdcard/nes` |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 17. Next Reading
+## 16. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)

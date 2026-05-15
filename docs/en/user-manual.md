@@ -11,8 +11,8 @@
 | RYMCU BigSmart development board | Main device |
 | USB Type-C data cable | Power, serial logs, firmware flashing |
 | 5 V USB power supply or computer USB port | Power |
-| MicroSD card | Stores MP3, NES ROM, video, and other resources |
-| Bluetooth HID gamepad | Optional NES game controller |
+| MicroSD card | Stores MP3, video, and other resources |
+| Bluetooth HID gamepad | Optional game controller |
 | 2.4G Wi-Fi network | Xiaozhi, internet radio, MQTT, and other connected features |
 
 ### 1.2 Notes
@@ -136,7 +136,6 @@ To reprovision Wi-Fi after the firmware is running, use one of these methods:
 | Hold power button for about 3 seconds | Power on/off, depending on the power management circuit state |
 | Click Boot | Enter provisioning during startup; toggle conversation state during runtime |
 | Double-click Boot | Toggle device-side AEC while idle, when `CONFIG_USE_DEVICE_AEC` is enabled |
-| Hold Boot for about 3 seconds | Enter NES game mode |
 | Press GPIO10/PTT | Start voice listening |
 | Release GPIO10/PTT | End voice listening |
 | Tap or swipe touch screen | Depends on the current firmware UI and application logic |
@@ -167,9 +166,6 @@ Format the MicroSD card as FAT32 and create directories as needed:
 │   ├── song1.mp3
 │   └── song2.mp3
 ├── test.mp3
-├── nes
-│   ├── game1.nes
-│   └── game2.nes
 └── videos
     ├── demo.mjpg
     ├── demo.mp3
@@ -239,49 +235,9 @@ Example:
 }
 ```
 
-## 10. NES Game Mode
+## 10. RGB LED and Smart Home MQTT
 
-### 10.1 Prepare ROMs
-
-Create a `nes` directory in the SD card root and place `.nes` files inside:
-
-```text
-/sdcard/nes
-├── Super Mario Bros.nes
-├── Contra.nes
-└── Tetris.nes
-```
-
-### 10.2 Enter Game Mode
-
-1. Make sure the device is idle.
-2. Hold the Boot button for about 3 seconds.
-3. The screen enters the NES game menu.
-4. The device scans for Bluetooth HID gamepads.
-5. Put the gamepad into pairing mode and wait for connection.
-6. Use the gamepad to select a ROM and start the game.
-
-### 10.3 Gamepad Controls
-
-| Gamepad button | Function |
-|----------------|----------|
-| D-pad | Menu selection or in-game direction |
-| A / Start | Start game in menu |
-| A | NES A |
-| B | NES B |
-| Start | NES Start |
-| Select | NES Select |
-| Start + Select | Return to menu in game; exit game mode in menu |
-| Short press Start + Select | Pause/resume, depending on current game state |
-| Hold L1 + R1 for about 2 seconds | Reset game |
-
-### 10.4 ROM Compatibility
-
-Mapper support listed in the current firmware documentation includes 0, 1, 2, 3, and 4. If a game shows a black screen, corrupted graphics, or stuttering, try another ROM or a more common mapper version.
-
-## 11. RGB LED and Smart Home MQTT
-
-### 11.1 Direct RGB Control
+### 10.1 Direct RGB Control
 
 Set the RGB LED:
 
@@ -305,7 +261,7 @@ Turn off the RGB LED:
 }
 ```
 
-### 11.2 Configure MQTT
+### 10.2 Configure MQTT
 
 Configure the broker:
 
@@ -347,7 +303,7 @@ Supported light-control message example:
 {"state":"ON","brightness":80,"color":{"r":255,"g":100,"b":50}}
 ```
 
-### 11.3 Publish Control Messages
+### 10.3 Publish Control Messages
 
 ```json
 {
@@ -360,7 +316,7 @@ Supported light-control message example:
 }
 ```
 
-## 12. IMU Attitude and Shake Detection
+## 11. IMU Attitude and Shake Detection
 
 BigSmart includes a QMI8658 six-axis sensor. After firmware startup, sensor data is read periodically and shake detection is started. You can read attitude angles, acceleration, and gyroscope data through MCP tools:
 
@@ -378,7 +334,7 @@ Typical uses:
 - Device attitude display.
 - Interactive installation triggers.
 
-## 13. Camera Usage
+## 12. Camera Usage
 
 BigSmart uses a GC0308 camera with 640 x 480 @ 16 FPS hardware support. The reference firmware uses lazy initialization: the camera is not initialized during startup and is only initialized on the first camera request, reducing startup memory pressure.
 
@@ -388,7 +344,7 @@ Suggestions:
 - Call the camera only when image capability is needed to avoid competing with audio, Wi-Fi, and large UI tasks for memory.
 - If the image orientation is wrong, check mirror and flip settings in firmware.
 
-## 14. Troubleshooting
+## 13. Troubleshooting
 
 | Problem | Possible cause | Solution |
 |---------|----------------|----------|
@@ -399,24 +355,20 @@ Suggestions:
 | Poor voice recognition | Noisy environment, too far from mic, unsuitable AEC state | Speak closer to the device, double-click Boot to toggle AEC |
 | SD card cannot mount | Not FAT32, poor contact, damaged card | Reformat, reinsert, replace card |
 | MP3 not found | Wrong path or unsupported format | Use absolute path and confirm `.mp3` extension |
-| NES ROM not found | File not placed in `/sdcard/nes` | Create the directory and copy `.nes` files |
-| Gamepad cannot connect | Gamepad not in pairing mode or not HID compatible | Re-enter pairing mode or use a standard Bluetooth HID gamepad |
 | MQTT connection fails | Wrong broker address, wrong port, network unreachable | Query `self.mqtt.get_status` and reconfigure broker |
 
-## 15. Hardware Maintenance
+## 14. Hardware Maintenance
 
 - Power off before plugging or unplugging the display, camera, microphone board, or other flex cables.
 - Pay attention to battery polarity and charging safety when using battery power.
 - Enclosure files are in `enclosure/`. When modifying the structure, consider screen, button, microphone openings, and speaker acoustic cavity.
 - Before adding new peripherals, check [Hardware Configuration](hardware.md) to avoid GPIO conflicts.
 
-## 16. References
+## 15. References
 
 - Project hardware documentation: [hardware.md](hardware.md)
 - Xiaozhi BigSmart firmware reference: `E:\RYMCU\xiaozhi`
 - BluFi provisioning documentation: `E:\RYMCU\xiaozhi\docs\blufi.md`
-- NES game integration documentation: `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\nes_integration.md`
 - MP3 tool documentation: `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\MP3_MCP_TOOLS.md`
 - Smart home MQTT documentation: `E:\RYMCU\xiaozhi\main\boards\rymcu-bigsmart\smart_home_mqtt_usage.md`
 - EchoEar product reference: https://oshwhub.com/esp-college/echoear
-- ESP32-S3 game console workflow reference: https://wiki.lckfb.com/zh-hans/szpi-esp32s3/beginner/game-console.html

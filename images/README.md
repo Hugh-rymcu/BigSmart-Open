@@ -10,7 +10,7 @@ This directory stores images used by README files and documentation pages.
 | `xiaozhi.jpg` | Xiaozhi assistant screen |
 | `music.jpg` | Music app screen |
 | `video.jpg` | Video app screen |
-| `tetris.jpg` | NES/game screen |
+| `tetris.jpg` | Game screen |
 | `tomato.jpg` | Tomato timer app screen |
 | `xiaozhi-esp32.jpg` | Xiaozhi official project support screenshot |
 | `espressif.jpg` | Espressif official project support screenshot |
