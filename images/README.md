@@ -14,6 +14,8 @@ This directory stores images used by README files and documentation pages.
 | `tomato.jpg` | Tomato timer app screen |
 | `xiaozhi-esp32.jpg` | Xiaozhi official project support screenshot |
 | `espressif.jpg` | Espressif official project support screenshot |
+| `bigsmart-layout.svg` | BigSmart device layout annotation diagram, vector source |
+| `bigsmart-layout.png` | BigSmart device layout annotation diagram, PNG export |
 | `bird.jpg` | Image or visual demo screen |
 | `page1.jpg` | Documentation page or UI page screenshot |
 | `page2.jpg` | Documentation page or UI page screenshot |
