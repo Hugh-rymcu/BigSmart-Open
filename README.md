@@ -24,6 +24,15 @@
 |--------|--------|
 | ![BigSmart Page 1](images/page1.jpg) | ![BigSmart Tetris](images/tetris.jpg) |
 
+## 第三方支持
+
+RYMCU BigSmart 已合并到以下官方开源项目，方便用户基于主线生态进行固件开发和应用验证。
+
+| 小智 AI 官方 | 乐鑫科技 Espressif 官方 |
+|--------------|--------------------------|
+| [78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)<br>[PR #1958](https://github.com/78/xiaozhi-esp32/pull/1958) | [espressif/esp-brookesia](https://github.com/espressif/esp-brookesia)<br>[PR #94](https://github.com/espressif/esp-brookesia/pull/94) |
+| ![RYMCU BigSmart in xiaozhi-esp32](images/xiaozhi-esp32.jpg) | ![RYMCU BigSmart in esp-brookesia](images/espressif.jpg) |
+
 ## 目录结构
 
 ```text

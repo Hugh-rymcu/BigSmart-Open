@@ -24,6 +24,15 @@ RYMCU BigSmart is an ESP32-S3 smart voice interaction development board based on
 |--------|--------|
 | ![BigSmart Page 1](images/page1.jpg) | ![BigSmart Tetris](images/tetris.jpg) |
 
+## Third-party Support
+
+RYMCU BigSmart has been merged into the following official open source projects, making it easier to build firmware and validate applications on top of their upstream ecosystems.
+
+| Xiaozhi AI Official | Espressif Official |
+|---------------------|--------------------|
+| [78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)<br>[PR #1958](https://github.com/78/xiaozhi-esp32/pull/1958) | [espressif/esp-brookesia](https://github.com/espressif/esp-brookesia)<br>[PR #94](https://github.com/espressif/esp-brookesia/pull/94) |
+| ![RYMCU BigSmart in xiaozhi-esp32](images/xiaozhi-esp32.jpg) | ![RYMCU BigSmart in esp-brookesia](images/espressif.jpg) |
+
 ## Repository Layout
 
 ```text
