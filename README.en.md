@@ -14,6 +14,16 @@ RYMCU BigSmart is an ESP32-S3 smart voice interaction development board based on
 - **Storage**: MicroSD card slot
 - **Other**: WS2812B RGB LED, battery charging management, button input
 
+## Showcase
+
+| Home | Xiaozhi |
+|------|---------|
+| ![BigSmart Home](images/home.jpg) | ![BigSmart Xiaozhi](images/xiaozhi.jpg) |
+
+| Page 1 | Tetris |
+|--------|--------|
+| ![BigSmart Page 1](images/page1.jpg) | ![BigSmart Tetris](images/tetris.jpg) |
+
 ## Repository Layout
 
 ```text

@@ -14,6 +14,16 @@
 - **存储**: MicroSD 卡槽
 - **其他**: WS2812B RGB LED、电池充电管理、按键输入
 
+## 实物展示
+
+| Home | Xiaozhi |
+|------|---------|
+| ![BigSmart Home](images/home.jpg) | ![BigSmart Xiaozhi](images/xiaozhi.jpg) |
+
+| Page 1 | Tetris |
+|--------|--------|
+| ![BigSmart Page 1](images/page1.jpg) | ![BigSmart Tetris](images/tetris.jpg) |
+
 ## 目录结构
 
 ```text
