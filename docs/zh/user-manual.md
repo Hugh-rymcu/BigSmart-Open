@@ -8,7 +8,7 @@
 
 | 项目 | 用途 |
 |------|------|
-| RYMCU BigSmart 开发板 | 主设备 |
+| RYMCU BigSmart AI助手 | 主设备 |
 | USB Type-C 数据线 | 供电、串口日志、固件烧录 |
 | 5V USB 电源或电脑 USB 口 | 供电 |
 | MicroSD 卡 | 存放 MP3、NES ROM 等资源 |

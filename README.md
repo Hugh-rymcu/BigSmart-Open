@@ -1,4 +1,4 @@
-# RYMCU BigSmart 开发板
+# RYMCU BigSmart AI助手
 
 **中文** | [English](README.en.md)
 

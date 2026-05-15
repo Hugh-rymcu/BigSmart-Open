@@ -2,7 +2,7 @@
 
 **中文** | [English](README.en.md)
 
-本目录存放 RYMCU BigSmart 开发板可直接烧录的预编译合并固件，按固件来源分为 RYMCU 官方、小智 AI 官方和乐鑫科技官方三个版本。
+本目录存放 RYMCU BigSmart AI助手可直接烧录的预编译合并固件，按固件来源分为 RYMCU 官方、小智 AI 官方和乐鑫科技官方三个版本。
 
 ## 固件文件
 
@@ -14,7 +14,7 @@
 
 ## 烧录前准备
 
-- RYMCU BigSmart 开发板。
+- RYMCU BigSmart AI助手。
 - 可传输数据的 USB Type-C 数据线。
 - 已安装 ESP-IDF、`esptool.py` 或图形化 ESP32 烧录工具的电脑。
 - 确认开发板串口号，例如 `COM8`。

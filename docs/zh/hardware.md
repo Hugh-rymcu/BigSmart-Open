@@ -1,4 +1,4 @@
-# RYMCU BigSmart 开发板硬件配置说明
+# RYMCU BigSmart AI助手硬件配置说明
 
 [English](../en/hardware.md)
 
