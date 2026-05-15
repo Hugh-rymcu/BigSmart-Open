@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="2500" viewBox="0 0 1600 2500">
+<rect width="1600" height="2500" fill="#ffffff"/>
+<text x="95" y="85" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="50" fill="#222222" text-anchor="start" dominant-baseline="middle">设备布局</text>
+<line x1="95" y1="125" x2="1505" y2="125" stroke="#e6e6e6" stroke-width="2" fill="none"/>
+<text x="800" y="155" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="30" fill="#555555" text-anchor="middle" dominant-baseline="middle">正面视图</text>
+<rect x="405" y="195" width="790" height="625" rx="70" fill="#fbfbfb" stroke="#555555" stroke-width="5"/>
+<rect x="535" y="300" width="530" height="320" rx="10" fill="#ffffff" stroke="#222222" stroke-width="6"/>
+<rect x="565" y="330" width="470" height="260" rx="4" fill="#f6f6f6" stroke="#777777" stroke-width="2"/>
+<text x="800" y="460" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="42" fill="#777777" text-anchor="middle" dominant-baseline="middle">2.8 寸 TFT</text>
+<text x="800" y="510" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="38" fill="#777777" text-anchor="middle" dominant-baseline="middle">触摸屏</text>
+<circle cx="565" cy="715" r="10" fill="#222222"/>
+<circle cx="539" cy="715" r="10" fill="#222222"/>
+<circle cx="591" cy="715" r="10" fill="#222222"/>
+<circle cx="565" cy="689" r="10" fill="#222222"/>
+<circle cx="565" cy="741" r="10" fill="#222222"/>
+<circle cx="1035" cy="715" r="10" fill="#222222"/>
+<circle cx="1009" cy="715" r="10" fill="#222222"/>
+<circle cx="1061" cy="715" r="10" fill="#222222"/>
+<circle cx="1035" cy="689" r="10" fill="#222222"/>
+<circle cx="1035" cy="741" r="10" fill="#222222"/>
+<circle cx="1135" cy="715" r="8" fill="#222222"/>
+<circle cx="1135" cy="715" r="15" fill="none" stroke="#777777" stroke-width="2"/>
+<circle cx="695" cy="730" r="32" fill="#ffffff" stroke="#555555" stroke-width="4"/>
+<circle cx="695" cy="730" r="24" fill="#222222"/>
+<circle cx="800" cy="730" r="32" fill="#ffffff" stroke="#555555" stroke-width="4"/>
+<circle cx="800" cy="730" r="24" fill="#222222"/>
+<circle cx="905" cy="730" r="32" fill="#ffffff" stroke="#555555" stroke-width="4"/>
+<circle cx="905" cy="730" r="24" fill="#222222"/>
+<text x="95" y="430" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="start" dominant-baseline="middle">2.8 寸 TFT 触摸屏</text>
+<line x1="330" y1="430" x2="517" y2="430" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="517" y1="430" x2="535" y2="430" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="95" y="715" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="start" dominant-baseline="middle">主 mic（5孔）</text>
+<line x1="330" y1="715" x2="547" y2="715" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="547" y1="715" x2="565" y2="715" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="695" y1="766" x2="655" y2="839" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="655" y="875" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="28" fill="#8d8d8d" text-anchor="middle" dominant-baseline="middle">电源按键</text>
+<line x1="800" y1="766" x2="800" y2="839" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="800" y="875" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="28" fill="#8d8d8d" text-anchor="middle" dominant-baseline="middle">BOOT 按键</text>
+<line x1="905" y1="766" x2="960" y2="824" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="960" y="860" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="28" fill="#8d8d8d" text-anchor="middle" dominant-baseline="middle">用户自定义</text>
+<text x="960" y="892" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="28" fill="#8d8d8d" text-anchor="middle" dominant-baseline="middle">按键</text>
+<text x="1505" y="650" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="end" dominant-baseline="middle">RGB</text>
+<line x1="1265" y1="650" x2="1153" y2="650" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="1153" y1="650" x2="1135" y2="715" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="1505" y="715" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="end" dominant-baseline="middle">副 mic（5孔）</text>
+<line x1="1265" y1="715" x2="1053" y2="715" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="1053" y1="715" x2="1035" y2="715" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="800" y="1100" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="30" fill="#555555" text-anchor="middle" dominant-baseline="middle">左侧视图</text>
+<rect x="690" y="1155" width="220" height="525" rx="38" fill="#fbfbfb" stroke="#555555" stroke-width="5"/>
+<polyline points="690,1185 650,1230 650,1605 690,1655" fill="none" stroke="#555555" stroke-width="4"/>
+<line x1="715" y1="1190" x2="715" y2="1645" stroke="#cfcfcf" stroke-width="2" fill="none"/>
+<rect x="764" y="1245" width="72" height="120" rx="24" fill="#ffffff" stroke="#222222" stroke-width="5"/>
+<rect x="788" y="1275" width="24" height="60" rx="9" fill="#eeeeee" stroke="#777777" stroke-width="2"/>
+<circle cx="800" cy="1455" r="10" fill="#222222"/>
+<rect x="756" y="1545" width="88" height="112" rx="14" fill="#ffffff" stroke="#222222" stroke-width="5"/>
+<rect x="775" y="1570" width="50" height="61" rx="8" fill="#eeeeee" stroke="#777777" stroke-width="2"/>
+<text x="1505" y="1303" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="end" dominant-baseline="middle">USB Type-C 接口</text>
+<line x1="1095" y1="1303" x2="854" y2="1303" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="854" y1="1303" x2="836" y2="1305" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="1505" y="1600" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="end" dominant-baseline="middle">SD 卡槽</text>
+<line x1="1095" y1="1600" x2="862" y2="1600" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="862" y1="1600" x2="844" y2="1600" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="800" y="1840" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="30" fill="#555555" text-anchor="middle" dominant-baseline="middle">背面视图</text>
+<rect x="405" y="1885" width="790" height="445" rx="62" fill="#fbfbfb" stroke="#555555" stroke-width="5"/>
+<circle cx="800" cy="1973" r="40" fill="#ffffff" stroke="#222222" stroke-width="5"/>
+<circle cx="800" cy="1973" r="20" fill="#eeeeee" stroke="#555555" stroke-width="3"/>
+<circle cx="808" cy="1965" r="6" fill="#777777"/>
+<circle cx="868.0" cy="2100" r="8" fill="#222222"/>
+<circle cx="906.0" cy="2100" r="8" fill="#222222"/>
+<circle cx="944.0" cy="2100" r="8" fill="#222222"/>
+<circle cx="982.0" cy="2100" r="8" fill="#222222"/>
+<circle cx="849.0" cy="2138" r="8" fill="#222222"/>
+<circle cx="887.0" cy="2138" r="8" fill="#222222"/>
+<circle cx="925.0" cy="2138" r="8" fill="#222222"/>
+<circle cx="963.0" cy="2138" r="8" fill="#222222"/>
+<circle cx="1001.0" cy="2138" r="8" fill="#222222"/>
+<circle cx="830.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="868.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="906.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="944.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="982.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="1020.0" cy="2176" r="8" fill="#222222"/>
+<circle cx="830.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="868.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="906.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="944.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="982.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="1020.0" cy="2214" r="8" fill="#222222"/>
+<circle cx="849.0" cy="2252" r="8" fill="#222222"/>
+<circle cx="887.0" cy="2252" r="8" fill="#222222"/>
+<circle cx="925.0" cy="2252" r="8" fill="#222222"/>
+<circle cx="963.0" cy="2252" r="8" fill="#222222"/>
+<circle cx="1001.0" cy="2252" r="8" fill="#222222"/>
+<circle cx="868.0" cy="2290" r="8" fill="#222222"/>
+<circle cx="906.0" cy="2290" r="8" fill="#222222"/>
+<circle cx="944.0" cy="2290" r="8" fill="#222222"/>
+<circle cx="982.0" cy="2290" r="8" fill="#222222"/>
+<text x="95" y="1973" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="start" dominant-baseline="middle">GC0308 摄像头</text>
+<line x1="330" y1="1973" x2="782" y2="1973" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="782" y1="1973" x2="800" y2="1973" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<text x="1505" y="2195" font-family="Microsoft YaHei, SimHei, Arial, sans-serif" font-size="34" fill="#8d8d8d" text-anchor="end" dominant-baseline="middle">扬声器孔位</text>
+<line x1="1265" y1="2195" x2="1033" y2="2195" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+<line x1="1033" y1="2195" x2="1015" y2="2195" stroke="#aaaaaa" stroke-width="2" fill="none" stroke-dasharray="12 10"/>
+</svg>
