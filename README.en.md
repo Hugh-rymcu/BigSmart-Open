@@ -8,10 +8,11 @@ RYMCU BigSmart is an ESP32-S3 smart voice interaction development board based on
 
 - **MCU**: ESP32-S3-WROOM-1-N16R8 (16 MB Flash + 8 MB PSRAM)
 - **Audio**: ES8311 DAC + ES7210 four-channel ADC + NS4150B power amplifier
-- **Display**: 2.4" ST7789 LCD (320 x 240) + GT911 capacitive touch panel
+- **Display**: 2.8" ST7789 LCD (320 x 240) + GT911 capacitive touch panel
 - **Camera**: GC0308 (640 x 480 @ 16 FPS)
 - **Sensor**: QMI8658 six-axis accelerometer/gyroscope
 - **Storage**: MicroSD card slot
+- **Battery**: 2500mAh 3.7V lithium-ion battery
 - **Other**: WS2812B RGB LED, battery charging management, button input
 
 ## Showcase
