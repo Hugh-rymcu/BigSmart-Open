@@ -6,6 +6,8 @@ This guide is written for the **RYMCU BigSmart development board** and is based 
 
 For complete build, flashing, and hardware details, see the [User Manual](user-manual.md) and [Hardware Configuration](hardware.md).
 
+![RYMCU BigSmart layout](../../images/layout-en.png)
+
 ## 1. Board Overview
 
 The firmware board type is `rymcu-bigsmart`, and the target chip is `esp32s3`. The reference project enables device-side AEC, the GC0308 camera, and BigSmart-specific peripheral initialization.

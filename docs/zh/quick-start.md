@@ -6,6 +6,8 @@
 
 更完整的编译、烧录和外设说明请参考 [用户详细使用手册](user-manual.md) 与 [硬件配置说明](hardware.md)。
 
+![RYMCU BigSmart 布局图](../../images/layout.png)
+
 ## 1. 开发板能力概览
 
 BigSmart 固件目标板卡为 `rymcu-bigsmart`，目标芯片为 `esp32s3`。当前参考工程启用了设备侧 AEC、GC0308 摄像头和 BigSmart 专用外设初始化。
