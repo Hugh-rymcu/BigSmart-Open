@@ -26,6 +26,7 @@ BigSmart-Open/
 │   ├── zh/                 # Chinese documentation
 │   └── en/                 # English documentation
 ├── firmware/               # Prebuilt merged firmware images
+├── images/                 # Images referenced by documentation
 ├── tools/
 │   └── video-converter/    # BigSmart video converter
 └── README.md

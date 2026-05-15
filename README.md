@@ -26,6 +26,7 @@ BigSmart-Open/
 │   ├── zh/                 # 中文文档
 │   └── en/                 # English documentation
 ├── firmware/               # 预编译合并固件
+├── images/                 # 文档引用图片
 ├── tools/
 │   └── video-converter/    # BigSmart 视频转换器
 └── README.md
