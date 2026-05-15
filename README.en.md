@@ -33,6 +33,14 @@ RYMCU BigSmart has been merged into the following official open source projects,
 | [78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)<br>[PR #1958](https://github.com/78/xiaozhi-esp32/pull/1958) | [espressif/esp-brookesia](https://github.com/espressif/esp-brookesia)<br>[PR #94](https://github.com/espressif/esp-brookesia/pull/94) |
 | ![RYMCU BigSmart in xiaozhi-esp32](images/xiaozhi-esp32.jpg) | ![RYMCU BigSmart in esp-brookesia](images/espressif.jpg) |
 
+## Hardware PCB
+
+The BigSmart hardware consists of a mainboard and a microphone/button daughter board. Complete open source hardware project files are provided in the hardware folder. Import the corresponding project into LCSC EDA Professional to use it.
+
+| Mainboard | Microphone/Button Board |
+|-----------|-------------------------|
+| ![BigSmart mainboard PCB](images/mainboard.png) | ![BigSmart microphone/button board PCB](images/mics-keys.png) |
+
 ## Repository Layout
 
 ```text
