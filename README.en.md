@@ -1,8 +1,8 @@
-# RYMCU BigSmart Development Board
+# RYMCU BigSmart AI Assistant
 
 [中文](README.md) | **English**
 
-RYMCU BigSmart is an ESP32-S3 smart voice interaction development board based on **ESP32-S3-WROOM-1-N16R8**. It integrates audio, display, camera, motion sensing, MicroSD storage, battery power management, and physical controls in one compact open hardware platform.
+RYMCU BigSmart is a smart voice interaction development board based on **ESP32-S3-WROOM-1-N16R8**. It integrates audio, display, camera, sensors, MicroSD storage, battery power, and other peripherals.
 
 ## Key Features
 
@@ -34,13 +34,21 @@ RYMCU BigSmart has been merged into the following official open source projects,
 | [78/xiaozhi-esp32](https://github.com/78/xiaozhi-esp32)<br>[PR #1958](https://github.com/78/xiaozhi-esp32/pull/1958) | [espressif/esp-brookesia](https://github.com/espressif/esp-brookesia)<br>[PR #94](https://github.com/espressif/esp-brookesia/pull/94) |
 | ![RYMCU BigSmart in xiaozhi-esp32](images/xiaozhi-esp32.jpg) | ![RYMCU BigSmart in esp-brookesia](images/espressif.jpg) |
 
-## Hardware PCB
+## Open Source Hardware PCB Project
 
 The BigSmart hardware consists of a mainboard and a microphone/button daughter board. Complete open source hardware project files are provided in the hardware folder. Import the corresponding project into LCSC EDA Professional to use it.
 
 | Mainboard | Microphone/Button Board |
 |-----------|-------------------------|
 | ![BigSmart mainboard PCB](images/mainboard.png) | ![BigSmart microphone/button board PCB](images/mics-keys.png) |
+
+## Open Source Enclosure Project
+
+The enclosure is open source and can be used directly for 3D printing.
+
+| Top Cover | Bottom Shell |
+|-----------|--------------|
+| <img src="images/top.png" alt="BigSmart top cover" width="549"> | <img src="images/bottom.png" alt="BigSmart bottom shell" width="601"> |
 
 ## Repository Layout
 
