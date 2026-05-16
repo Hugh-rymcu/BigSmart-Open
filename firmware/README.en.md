@@ -2,9 +2,9 @@
 
 [中文](README.md) | **English**
 
-This directory stores prebuilt merged firmware images that can be flashed directly to the RYMCU BigSmart development board. The images are organized by firmware source: RYMCU official, Xiaozhi AI official, and Espressif official.
+This directory contains prebuilt merged firmware images that can be flashed directly to the RYMCU BigSmart AI assistant. The images are organized by source: RYMCU official, Xiaozhi AI official, and Espressif official.
 
-## Firmware Image
+## Firmware Images
 
 | File | Source | Description |
 |------|--------|-------------|
@@ -14,42 +14,75 @@ This directory stores prebuilt merged firmware images that can be flashed direct
 
 ## Before Flashing
 
-- RYMCU BigSmart development board.
-- USB Type-C data cable.
-- A computer with ESP-IDF, `esptool.py`, or a graphical ESP32 flashing tool installed.
-- Confirm the serial port of the board, such as `COM8`.
+Prepare the following items:
 
-## Flash with esptool.py
+- RYMCU BigSmart AI assistant.
+- USB Type-C cable that supports data transfer.
+- A Windows computer and any flashing tool that supports ESP32-S3.
 
-The RYMCU official firmware is recommended as the default. Run this command from the repository root:
+Put the device into download mode before flashing:
 
-```powershell
-esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
-```
+1. Hold the BigSmart Boot button.
+2. Hold the power button to turn on the device.
+3. Release all buttons after the device enters download mode.
+4. Check the serial port in Device Manager, such as `COM8`.
 
-For example, if the serial port is `COM8`:
+All flashing methods below require the device to be in download mode first. After flashing, power on the device again to run the new firmware.
 
-```powershell
-esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
-```
+## Offline Flashing
 
-The merged firmware must be written to Flash offset `0x0`.
+Choose any one of the following offline tools. All merged firmware images must be written to Flash offset `0x0`.
 
-To try another official ecosystem, replace the file name in the command with:
+### Espressif Flash Download Tool
 
-```text
-firmware\xiaozhi-esp32-merged.bin
-firmware\espressif-brookesia-merged.bin
-```
+Flash Download Tool is Espressif's official offline flashing utility. It is suitable for manually selecting the firmware image and writing it through a graphical interface.
 
-## Enter Download Mode
+Download link: [Flash Download Tool](https://docs.espressif.com/projects/esp-test-tools/en/latest/esp32/production_stage/tools/flash_download_tool.html)
 
-If the flashing tool cannot enter download mode automatically, do it manually:
+After downloading and extracting the package, run the `.exe` file, then select the chip, serial port, flash address, and firmware image as shown in the tool.
 
-1. Hold the Boot button.
-2. Reset or power-cycle the board.
-3. Release the Boot button.
-4. Run the flashing command again.
+![Flash Download Tool start screen](../images/flash1.png)
+
+![Flash Download Tool flashing configuration](../images/flash2.png)
+
+### RYMCU Serial Debug Assistant
+
+RYMCU Serial Debug Assistant provides a graphical serial flashing workflow for quickly selecting and writing a merged firmware image to BigSmart.
+
+Download link: [RYCOM 2.6.3](https://github.com/rymcu/RYCOM/releases/tag/2.6.3)
+
+After installation, open the tool, select the BigSmart serial port, choose the firmware image, and start flashing as shown below.
+
+![RYMCU Serial Debug Assistant flashing screen](../images/rymcom.png)
+
+### RYMCU RODAK Tool
+
+RODAK is a firmware download tool provided by RYMCU. It can also flash BigSmart merged firmware images.
+
+Download link: [RODAK Releases](https://github.com/rymcu/rodak-releases)
+
+After installation, open the tool, select the BigSmart serial port, choose the firmware image, and start flashing as shown below.
+
+![RODAK flashing screen](../images/rodak.png)
+
+## Online Flashing
+
+### Espressif ESP Launchpad
+
+ESP Launchpad is Espressif's official web flashing tool. It can connect to the serial port and write firmware directly from the browser.
+
+Online flashing link: [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-brookesia/agent/chatbot/launchpad.toml)
+
+Steps:
+
+1. Open the page and click `Connect`.
+2. Select the BigSmart serial port in the browser's port list and connect.
+3. Click `DIY`.
+4. Set the flash address to `0x0`.
+5. Select the merged firmware image to flash.
+6. Click `Program` to start flashing.
+
+![ESP Launchpad flashing screen](../images/esplaunchpad.png)
 
 ## Check After Flashing
 
@@ -65,6 +98,6 @@ After flashing, the device restarts automatically. In a normal startup:
 | Problem | Solution |
 |---------|----------|
 | Serial port not found | Use a data-capable USB cable and check drivers/device manager |
-| Flashing fails | Enter download mode manually, close any serial terminal using the port, and retry |
+| Flashing fails | Re-enter download mode, close any serial terminal using the port, and retry |
 | No display after flashing | Confirm the image was written at `0x0`, power-cycle the board, and check power |
 | Wi-Fi cannot connect | Use 2.4G Wi-Fi and reconfigure the network in Settings |
