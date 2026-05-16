@@ -2,102 +2,32 @@
 
 [中文](../zh/quick-start.md)
 
-This guide is written for the **RYMCU BigSmart development board** . It covers first boot, Wi-Fi setup, voice interaction, SD card resources, video playback, music playback, and USB disk mode.
+This guide is written for the **RYMCU BigSmart AI assistant**. It helps users complete first boot, network setup, voice interaction, SD card resource preparation, music playback, video playback, and USB disk mode.
 
 For complete build, flashing, and hardware details, see the [User Manual](user-manual.md) and [Hardware Configuration](hardware.md).
 
-![RYMCU BigSmart layout](../../images/layout-en.png)
+<p align="center"><img src="../../images/layout-en.png" alt="RYMCU BigSmart layout" width="800"></p>
 
-## 1. Board Overview
+## 1. Firmware and Flashing
 
-The firmware board type is `rymcu-bigsmart`, and the target chip is `esp32s3`. The reference project enables device-side AEC, the GC0308 camera, and BigSmart-specific peripheral initialization.
+BigSmart ships with the RYMCU official firmware preinstalled and can be used directly after power-on. To upgrade or switch firmware, see the [firmware flashing guide](../../firmware/README.en.md).
 
-| Module | BigSmart configuration |
-|--------|------------------------|
-| MCU | ESP32-S3-WROOM-1-N16R8 |
-| Display | ST7789, 320 x 240, SPI, GT911 touch |
-| Audio | ES8311 DAC + ES7210 four-channel ADC + NS4150B amplifier |
-| Microphones | MIC1 main, MIC2 secondary, MIC3 AEC reference, MIC4 reserved |
-| Camera | GC0308 DVP camera, initialized lazily on first use |
-| Storage | MicroSD, SDMMC 1-line mode, mounted at `/sdcard` |
-| Sensor | QMI8658 six-axis IMU, attitude and shake detection |
-| LED | One WS2812B RGB LED on GPIO43 |
-| Buttons | Boot on GPIO0, GPIO10/PTT button |
+The firmware images in this repository are merged images. When using a flashing tool, write the image to Flash offset `0x0`.
 
-## 2. Before You Start
+## 2. Power On and Home Screen
 
-Prepare the following items:
+### 2.1 Power On
 
-| Item | Purpose |
-|------|---------|
-| RYMCU BigSmart development board | Main device |
-| USB Type-C data cable | Power, serial logs, firmware flashing, USB disk mode |
-| 5 V USB power supply or computer USB port | Power |
-| MicroSD card | Music, video, background images, and game resources |
-| 2.4G Wi-Fi | Xiaozhi connection, time sync, internet radio, MQTT |
-| Bluetooth HID gamepad | Optional game controller |
+1. Hold the power button for about 3 seconds.
+2. If the battery is low, connect the board to a computer or 5 V power supply with a USB Type-C data cable.
+3. After the screen turns on, the Home screen appears and shows `rymcu-bigsmart` and the current firmware version.
+4. To view logs, connect to the corresponding COM port with a serial terminal.
 
-Notes:
+<p align="center"><img src="../../images/home.jpg" alt="BigSmart Home screen" width="1536"></p>
 
-- Use a USB cable that supports data transfer. Charge-only cables cannot flash firmware or use USB disk mode.
-- Format the MicroSD card as FAT32.
-- ESP32-S3 supports 2.4G Wi-Fi only.
-- On startup, the firmware initializes SD card, display, touch, Wi-Fi manager, buttons, battery monitor, IMU, RGB LED, and MCP tools.
+### 2.2 Home Screen and Apps
 
-## 3. Firmware Flashing
-
-This repository includes three BigSmart merged firmware images:
-
-```text
-firmware/rymcu-V2.3.19-merged.bin
-firmware/xiaozhi-esp32-merged.bin
-firmware/espressif-brookesia-merged.bin
-```
-
-The RYMCU official firmware `rymcu-V2.3.19-merged.bin` is recommended as the default.
-
-Use ESP-IDF, `esptool.py`, or a GUI flashing tool to write it to the ESP32-S3. Command-line example:
-
-```powershell
-esptool.py --chip esp32s3 -p COM_PORT -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
-```
-
-For example, if the serial port is `COM8`:
-
-```powershell
-esptool.py --chip esp32s3 -p COM8 -b 460800 write_flash 0x0 firmware\rymcu-V2.3.19-merged.bin
-```
-
-If automatic download mode fails, hold Boot, reset or power-cycle the board, release Boot, and flash again.
-
-## 4. Power On and First Boot
-
-1. Insert the MicroSD card. It is best to prepare `/music`, `/videos`, and `/background` in advance.
-2. Connect the board to a computer or 5 V power supply with USB Type-C.
-3. Hold the power button for about 3 seconds.
-4. After the screen turns on, the Launcher appears and shows `rymcu-bigsmart` and the firmware version.
-5. To view logs, connect to the corresponding COM port with a serial terminal.
-
-Typical startup logs:
-
-```text
-RYMCU BigSmart - Starting...
-SD card mounted at /sdcard
-SD card pins: CLK=47, CMD=48, DAT0=21 (1-line SD mode)
-RGB LED strip initialized on GPIO43
-WiFi manager initialized early at board startup
-```
-
-When the SD card mounts successfully, the firmware checks and creates:
-
-```text
-/sdcard/videos
-/sdcard/background
-```
-
-## 5. Launcher and Apps
-
-The firmware enters the Launcher after startup. According to `E:\RYMCU\xiaozhi\main\application.cc`, common entries include:
+Swipe left or right on the Home screen to switch app pages. Common apps include:
 
 | App | Purpose |
 |-----|---------|
@@ -108,45 +38,53 @@ The firmware enters the Launcher after startup. According to `E:\RYMCU\xiaozhi\m
 | Video | Play video resources from `/sdcard/videos` |
 | Image | View image resources |
 | Camera | Use the GC0308 camera |
-| Gyro | View QMI8658 attitude/sensor features |
+| Gyro | View QMI8658 attitude and sensor information |
 | Games | Enter game-related features |
 | USB Disk | Reboot into USB disk mode and share the SD card with a PC |
 
-Use the touch screen to open apps, go back, select files, and adjust settings. The Launcher back button is managed by firmware, so each app may show a different return control.
+Use the touch screen to open apps, go back, select files, and adjust settings.
 
-## 6. Wi-Fi Setup
+<p align="center"><img src="../../images/page1.jpg" alt="BigSmart app page" width="1536"></p>
 
-BigSmart uses the board-level `WifiBoard` and the Settings app for network setup. If no saved Wi-Fi credentials exist, the firmware opens the Settings network page after Launcher initialization.
+## 3. Wi-Fi Setup
 
-### 6.1 On-screen Wi-Fi Setup
+Wi-Fi must be configured before first use. BigSmart supports three provisioning methods: on-screen setup, hotspot web setup, and WeChat mini program BLE setup. Choose any one of them.
 
-1. Open `Settings`.
-2. Enter the network/Wi-Fi page.
-3. Scan nearby Wi-Fi networks.
-4. Select a 2.4G Wi-Fi network and enter the password.
-5. Save and wait for connection.
+Open the `Settings` app and enter the Wi-Fi settings page.
 
-### 6.2 Enter Setup with Boot During Startup
+<p align="center"><img src="../../images/network.png" alt="Wi-Fi settings entry" width="530"></p>
 
-When the device is still starting, clicking the Boot button enters the board-level Wi-Fi configuration flow and opens the Settings network page.
+Note: BigSmart supports 2.4 GHz Wi-Fi only.
 
-### 6.3 Reconfigure During Conversation
+### 3.1 On-screen Wi-Fi Setup
 
-BigSmart registers this MCP tool:
+Tap `Screen WiFi`, enter the Wi-Fi SSID and password, and tap `Connect`.
 
-```text
-self.system.reconfigure_wifi
-```
+<p align="center"><img src="../../images/screen.png" alt="On-screen Wi-Fi setup" width="537"></p>
 
-It ends the current conversation and enters Wi-Fi configuration mode. User confirmation is required before calling it.
+### 3.2 Hotspot Web Setup
 
-### 6.4 Hotspot and BLE Provisioning
+Tap `Web Setup` to open hotspot provisioning. Connect your phone to the hotspot shown on the screen, such as `Xiaozhi-11F0`. The phone usually opens the setup page automatically; if not, open the browser page shown by the device and enter the Wi-Fi information manually.
 
-The Settings app also includes entries to start web hotspot provisioning and BLE provisioning. Actual availability depends on the firmware configuration.
+<p align="center"><img src="../../images/hotpot.png" alt="Hotspot web setup" width="538"></p>
 
-## 7. Xiaozhi Server and Connection Settings
+### 3.3 WeChat Mini Program BLE Setup
 
-BigSmart firmware reads server settings such as OTA URL, MQTT endpoint, WebSocket URL, client ID, and token from stored settings. Names may differ between firmware versions, but they are usually configured in `Settings`.
+Tap `BLE Setup` to open BLE provisioning. Scan the QR code on the device with WeChat, or search for the mini program `艾塔达克`. Register or sign in before provisioning if prompted.
+
+<p align="center"><img src="../../images/wechat.png" alt="WeChat mini program BLE entry" width="532"></p>
+
+Mini program flow:
+
+| Open the mini program | Select BLE setup | Complete Wi-Fi setup |
+|-----------------------|------------------|----------------------|
+| <img src="../../images/ble1.jpg" alt="WeChat mini program step 1" width="600"> | <img src="../../images/ble2.png" alt="WeChat mini program step 2" width="600"> | <img src="../../images/ble3.png" alt="WeChat mini program step 3" width="600"> |
+
+## 4. Service Provider and Device Binding
+
+### 4.1 Service Provider Settings
+
+BigSmart reads server settings such as OTA URL, MQTT endpoint, WebSocket URL, client ID, and token from stored settings. Names may differ between firmware versions, but they are usually configured in `Settings`.
 
 Common modes:
 
@@ -156,93 +94,61 @@ Common modes:
 | RYMCU official | Use the RYMCU service adapted for BigSmart |
 | Custom | Enter a self-hosted service, MQTT/WebSocket URL, or token |
 
-After changing server settings, return to the Launcher and reopen Xiaozhi. Reboot the device if needed.
+After changing server settings, return to the Home screen and reopen Xiaozhi. Reboot the device if needed.
 
-## 8. Button Operations
+<p align="center"><img src="../../images/advanced.png" alt="Advanced service settings" width="527"></p>
 
-Button behavior comes from `rymcu_bigsmart_board.cc`:
+### 4.2 Device Binding
 
-| Operation | Behavior |
-|-----------|----------|
-| Hold power for about 3 seconds | Power on/off, depending on the power circuit |
-| Click Boot | During startup, enter Wi-Fi setup; during runtime, toggle Xiaozhi conversation state |
-| Double-click Boot | Toggle device-side AEC while idle, when `CONFIG_USE_DEVICE_AEC` is enabled |
-| Press GPIO10/PTT | Start voice listening when idle or listening |
-| Release GPIO10/PTT | Stop voice listening when listening |
-| Hold GPIO10 during startup | Enter USB disk mode |
+Some services require device binding. After entering Xiaozhi, the device shows an activation or binding code. Enter that code in the corresponding mini program or web console and confirm the binding.
 
-GPIO10 is the PTT button during normal runtime and is also checked during startup for USB disk mode.
+<p align="center"><img src="../../images/peidui.png" alt="Device binding code" width="531"></p>
 
-## 9. Voice Assistant Quick Use
+#### 4.2.1 RYMCU Official Server Verification-Code Binding
 
-1. Make sure the device is connected to Wi-Fi.
-2. Open `Xiaozhi` from the Launcher.
-3. Click Boot to toggle conversation state, or hold GPIO10/PTT to speak.
-4. Release GPIO10/PTT when done, or wait for the device to stop listening.
-5. The response plays through the speaker and the screen updates with state information.
+Log in to the WeChat mini program "艾塔达克" and bind the device as shown below.
 
-If the device frequently recognizes its own speaker output, double-click Boot while idle to toggle device-side AEC.
+| Device list entry | Enter binding information |
+|-------------------|---------------------------|
+| <img src="../../images/bd0.png" alt="Device binding step 1" width="600"> | <img src="../../images/bd1.png" alt="Device binding step 2" width="600"> |
 
-## 10. SD Card Layout
+#### 4.2.2 Xiaoge Xiaozhi AI Official Server Verification-Code Binding
 
-BigSmart mounts the SD card at `/sdcard` using SDMMC 1-line mode:
+Log in to the official console at https://xiaozhi.me/console/agents, click "Device Management", then click "Add Device". Enter the 6-digit verification code spoken by the device or shown on the screen in the add-device dialog.
 
-| Signal | GPIO |
-|--------|------|
-| CLK | GPIO47 |
-| CMD | GPIO48 |
-| DAT0 | GPIO21 |
+<p align="center"><img src="../../images/pd2.png" alt="Web console add-device dialog" width="424"></p>
 
-Recommended layout:
+## 5. SD Card and Media Resources
+
+### 5.1 SD Card Layout
+
+BigSmart mounts the SD card at `/sdcard` using SDMMC 1-line mode. Format the MicroSD card as FAT32 and organize resources as follows:
 
 ```text
 /sdcard
 ├── music/          # MP3 music, subdirectories allowed
 ├── videos/         # .mjpg/.mp3/.fps video resources
 ├── background/     # Background images
+└── photos/         # Image resources, optional
 ```
 
-The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music` manually if needed.
+The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music`, `photos`, and other resource directories manually as needed.
 
-## 11. Music Playback
+<p align="center"><img src="../../images/u-sd.png" alt="SD card folders in USB disk mode" width="378"></p>
 
-The `Music` app and MCP tools can play MP3 files from the SD card.
+### 5.2 Music and Video Playback
 
-Common MCP tools:
+The `Music` app plays MP3 files from the SD card. The `Video` app reads video resources from `/sdcard/videos`.
 
-| Function | Tool |
-|----------|------|
-| Play a specific MP3 | `self.media.play_mp3` |
-| Stop playback | `self.media.stop_mp3` |
-| List MP3 files | `self.media.list_mp3_files` |
-| Get playback state | `self.media.get_mp3_state` |
-| Next track | `self.media.play_next` |
-| Previous track | `self.media.play_previous` |
+| Music playback | Video playback |
+|----------------|----------------|
+| <img src="../../images/music1.png" alt="Music playback screen" width="526"> | <img src="../../images/video1.png" alt="Video playback screen" width="537"> |
 
-Example directory:
+Example music directory:
 
 ```text
 /sdcard/music/song1.mp3
 /sdcard/music/song2.mp3
-```
-
-Example call:
-
-```json
-{
-  "tool": "self.media.play_mp3",
-  "arguments": {
-    "filepath": "/sdcard/music/song1.mp3"
-  }
-}
-```
-
-## 12. Video Playback
-
-The `Video` app reads this fixed directory:
-
-```text
-/sdcard/videos
 ```
 
 Each video should use three files with the same base name:
@@ -259,24 +165,16 @@ Each video should use three files with the same base name:
 | `.mp3` | Matching audio track |
 | `.fps` | Frame-rate sidecar for audio/video sync |
 
-If `.fps` is missing, the Video app falls back to 8 fps. Use the repository [Video Converter](video-converter.md) to generate the three files.
+If `.fps` is missing, the Video app falls back to 8 fps.
 
-Recommended settings:
+Use the repository [Video Converter](video-converter.md) to generate video resources:
 
 - Resolution: 320 x 240.
 - Frame rate: 8-12 fps.
 - JPEG quality: 8.
 - MP3: 44100 Hz.
 
-Flow:
-
-1. Convert the video on your computer with `tools/video-converter/RYMCU-Video-Converter.exe`.
-2. Copy the generated `.mjpg`, `.mp3`, and `.fps` files to `/videos` on the SD card.
-3. Boot the device and enter the Launcher.
-4. Open the `Video` app.
-5. Tap a video item to play it.
-
-## 13. USB Disk Mode
+## 6. USB Disk Mode
 
 USB disk mode shares the SD card with a PC as a USB storage device. It is useful for copying music, videos, background images, and other resources.
 
@@ -295,63 +193,25 @@ Exit:
 
 Note: USB disk mode requires a mounted SD card.
 
-## 14. RGB, IMU, MQTT, and Camera
+## 7. Extended Features
 
-BigSmart firmware also registers local features and MCP tools.
+BigSmart firmware also registers local features and MCP tools:
 
-### 14.1 RGB LED
+| Feature | Description |
+|---------|-------------|
+| RGB LED | Set RGB colors and turn the light off |
+| IMU attitude and shake | QMI8658 reads attitude data and supports shake detection |
+| Smart home MQTT | Configure broker, connect, publish, subscribe, and control example devices |
+| Camera | GC0308 is lazily initialized when opening Camera or requesting camera capability for the first time |
 
-```json
-{
-  "tool": "self.light.set_rgb_color",
-  "arguments": {
-    "red": 255,
-    "green": 100,
-    "blue": 50
-  }
-}
-```
-
-Turn off:
-
-```json
-{
-  "tool": "self.light.turn_off",
-  "arguments": {}
-}
-```
-
-### 14.2 IMU Attitude and Shake
-
-The QMI8658 initializes after firmware startup and supports attitude reading and shake detection. Typical uses include motion control, state triggers, and interactive demos.
-
-### 14.3 Smart Home MQTT
-
-The firmware includes a SmartHome MQTT client and tools for broker configuration, connect, publish, subscribe, light subscriptions, and humidifier examples.
-
-```text
-self.mqtt.configure
-self.mqtt.connect
-self.mqtt.disconnect
-self.mqtt.get_status
-self.mqtt.publish
-self.mqtt.subscribe
-self.mqtt.subscribe_light
-self.mqtt.humidifier
-```
-
-### 14.4 Camera
-
-The GC0308 camera is lazily initialized. It is not initialized at boot; it is initialized the first time the Camera app or a camera request needs it. This reduces memory pressure during startup.
-
-## 15. Troubleshooting
+## 8. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
-| Screen does not turn on | Hold the power button for about 3 seconds; check USB power and cable |
+| Screen does not turn on | Hold the power button for about 3 seconds; check battery level, USB power, and cable |
 | No serial port on PC | Use a data-capable USB cable and check drivers/device manager |
-| Wi-Fi not found | Use 2.4G Wi-Fi and retry near the router |
-| Cannot enter Wi-Fi setup | Click Boot during startup or open the network page from Settings |
+| Wi-Fi not found | Use 2.4 GHz Wi-Fi and retry near the router |
+| Cannot enter Wi-Fi setup | Open the Wi-Fi page from `Settings`, or reboot and restart the provisioning flow |
 | SD card mount fails | Use FAT32, reinsert the card, or try another card |
 | Video app shows no files | Put files under `/sdcard/videos`; at least a `.mjpg` file is required |
 | Video has no sound | Make sure a same-name `.mp3` file exists |
@@ -360,7 +220,7 @@ The GC0308 camera is lazily initialized. It is not initialized at boot; it is in
 | USB disk mode does not enter | Hold GPIO10 before startup/reset and make sure an SD card is inserted |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 16. Next Reading
+## 9. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)
