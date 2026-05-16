@@ -54,7 +54,7 @@ Open the `Settings` app and enter the Wi-Fi settings page.
 
 <p align="center"><img src="../../images/network.png" alt="Wi-Fi settings entry" width="530"></p>
 
-Note: BigSmart supports 2.4 GHz Wi-Fi only.
+**Note: BigSmart supports 2.4 GHz Wi-Fi only.**
 
 ### 3.1 On-screen Wi-Fi Setup
 
@@ -84,25 +84,21 @@ Mini program flow:
 
 ### 4.1 Service Provider Settings
 
-BigSmart reads server settings such as OTA URL, MQTT endpoint, WebSocket URL, client ID, and token from stored settings. Names may differ between firmware versions, but they are usually configured in `Settings`.
-
-Common modes:
-
-| Mode | Description |
-|------|-------------|
-| Xiaozhi official | Use the official Xiaozhi service |
-| RYMCU official | Use the RYMCU service adapted for BigSmart |
-| Custom | Enter a self-hosted service, MQTT/WebSocket URL, or token |
-
-After changing server settings, return to the Home screen and reopen Xiaozhi. Reboot the device if needed.
+Before using the `xiaozhi` voice assistant, set the server address first. The screen configuration supports three service provider options, as shown below.
 
 <p align="center"><img src="../../images/advanced.png" alt="Advanced service settings" width="527"></p>
 
+Here, `atdak` is the `RYMCU` official server, `tenclass` is the Xiage Xiaozhi AI official server, and `custom` is a custom server where you can enter your own server address.
+
+**The factory default uses the RYMCU official server.**
+
 ### 4.2 Device Binding
 
-Some services require device binding. After entering Xiaozhi, the device shows an activation or binding code. Enter that code in the corresponding mini program or web console and confirm the binding.
+For first-time use, after entering the `Xiaozhi app`, the device screen shows an activation code or binding code. Enter that code in the corresponding mini program or web console and confirm the binding.
 
 <p align="center"><img src="../../images/peidui.png" alt="Device binding code" width="531"></p>
+
+**Choose any one of the following three methods. The factory default is the first one.**
 
 #### 4.2.1 RYMCU Official Server Verification-Code Binding
 
@@ -112,88 +108,59 @@ Log in to the WeChat mini program "艾塔达克" and bind the device as shown be
 |-------------------|---------------------------|
 | <img src="../../images/bd0.png" alt="Device binding step 1" width="600"> | <img src="../../images/bd1.png" alt="Device binding step 2" width="600"> |
 
-#### 4.2.2 Xiaoge Xiaozhi AI Official Server Verification-Code Binding
+#### 4.2.2 tenclass Xiaozhi AI Official Server Verification-Code Binding
 
 Log in to the official console at https://xiaozhi.me/console/agents, click "Device Management", then click "Add Device". Enter the 6-digit verification code spoken by the device or shown on the screen in the add-device dialog.
 
 <p align="center"><img src="../../images/pd2.png" alt="Web console add-device dialog" width="424"></p>
 
-## 5. SD Card and Media Resources
+#### 4.2.3 Custom Server Verification-Code Binding
 
-### 5.1 SD Card Layout
+Bind the device according to your custom server.
 
-BigSmart mounts the SD card at `/sdcard` using SDMMC 1-line mode. Format the MicroSD card as FAT32 and organize resources as follows:
+In addition, the `RYMCU` official server is open source and can be self-deployed if you have the required technical foundation. Server link: https://github.com/ruanrongman/IntelliConnect
 
-```text
-/sdcard
-├── music/          # MP3 music, subdirectories allowed
-├── videos/         # .mjpg/.mp3/.fps video resources
-├── background/     # Background images
-└── photos/         # Image resources, optional
-```
+## 5. Music and Video Playback
 
-The firmware automatically creates `/sdcard/videos` and `/sdcard/background` on startup. Create `music`, `photos`, and other resource directories manually as needed.
-
-<p align="center"><img src="../../images/u-sd.png" alt="SD card folders in USB disk mode" width="378"></p>
-
-### 5.2 Music and Video Playback
-
-The `Music` app plays MP3 files from the SD card. The `Video` app reads video resources from `/sdcard/videos`.
+Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos from the `SD` card.
 
 | Music playback | Video playback |
 |----------------|----------------|
 | <img src="../../images/music1.png" alt="Music playback screen" width="526"> | <img src="../../images/video1.png" alt="Video playback screen" width="537"> |
 
-Example music directory:
-
-```text
-/sdcard/music/song1.mp3
-/sdcard/music/song2.mp3
-```
-
-Each video should use three files with the same base name:
-
-```text
-/sdcard/videos/demo.mjpg
-/sdcard/videos/demo.mp3
-/sdcard/videos/demo.fps
-```
-
-| File | Purpose |
-|------|---------|
-| `.mjpg` | 320 x 240 MJPEG video stream |
-| `.mp3` | Matching audio track |
-| `.fps` | Frame-rate sidecar for audio/video sync |
-
-If `.fps` is missing, the Video app falls back to 8 fps.
+**Copy `mp3` music and video files to the `music` and `videos` folders on the `SD` card in advance. See the next section for the operation method.**
 
 Use the repository [Video Converter](video-converter.md) to generate video resources:
 
-- Resolution: 320 x 240.
-- Frame rate: 8-12 fps.
-- JPEG quality: 8.
-- MP3: 44100 Hz.
-
 ## 6. USB Disk Mode
 
-USB disk mode shares the SD card with a PC as a USB storage device. It is useful for copying music, videos, background images, and other resources.
+USB disk mode shares the SD card with a computer as a USB drive. It is useful for quickly copying music, videos, background images, and other resources.
 
 Enter USB disk mode:
 
-1. Power off or restart the device.
-2. Hold GPIO10/PTT.
-3. Power on or reset.
-4. Release the button after the USB Disk Mode screen appears.
-5. Connect the USB data cable to the PC. The SD card appears as a USB drive.
+Tap the `USB Disk app` on the screen to enter USB-to-drive mode. Connect the device to a computer with a USB cable, and the computer will show the SD card as a USB drive.
 
-Exit:
+<p align="center"><img src="../../images/u-sd.png" alt="SD card folders in USB disk mode" width="378"></p>
 
-- Safely eject the drive on the PC first.
-- Tap `Return to Launcher` on the device, or hold GPIO10 for about 1.5 seconds as prompted.
+**Copy MP3 files to the `music` folder.**
 
-Note: USB disk mode requires a mounted SD card.
+**Regular video files need to be converted to a format suitable for playback on the BigSmart AI assistant, then placed in the `videos` directory. Use the repository [Video Converter](video-converter.md) for conversion.**
 
-## 7. Extended Features
+## 7. Internet Radio
+
+Tap the `Radio app` to play internet radio stations.
+
+<p align="center"><img src="../../images/radio.png" alt="Internet radio" width="528"></p>
+
+## 8. Games
+
+Tap the `Games app` to play multiple games.
+
+| Game list | Maze game |
+|-----------|-----------|
+| <img src="../../images/games.png" alt="Game list" width="530"> | <img src="../../images/maze.png" alt="Maze game" width="521"> |
+
+## 9. Extended Features
 
 BigSmart firmware also registers local features and MCP tools:
 
@@ -204,7 +171,7 @@ BigSmart firmware also registers local features and MCP tools:
 | Smart home MQTT | Configure broker, connect, publish, subscribe, and control example devices |
 | Camera | GC0308 is lazily initialized when opening Camera or requesting camera capability for the first time |
 
-## 8. Troubleshooting
+## 10. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
@@ -220,7 +187,7 @@ BigSmart firmware also registers local features and MCP tools:
 | USB disk mode does not enter | Hold GPIO10 before startup/reset and make sure an SD card is inserted |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 9. Next Reading
+## 11. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)
