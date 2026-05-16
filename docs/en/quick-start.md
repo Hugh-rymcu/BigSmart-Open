@@ -120,7 +120,15 @@ Bind the device according to your custom server.
 
 In addition, the `RYMCU` official server is open source and can be self-deployed if you have the required technical foundation. Server link: https://github.com/ruanrongman/IntelliConnect
 
-## 5. Music and Video Playback
+## 5. AI Assistant Usage
+
+**After `wifi` and server configuration are complete, tap the `xiaozhi app` on the screen to enter the AI assistant. After initialization finishes and the `idle` page appears, wake it by saying "Ni hao, Xiaozhi", or press the middle `boot` button to wake it.**
+
+| Idle page | Wakeup page |
+|-----------|-------------|
+| <img src="../../images/idle.png" alt="AI assistant idle page" width="391"> | <img src="../../images/wakeup.png" alt="AI assistant wakeup page" width="372"> |
+
+## 6. Music and Video Playback
 
 Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos from the `SD` card.
 
@@ -132,7 +140,7 @@ Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos
 
 Use the repository [Video Converter](video-converter.md) to generate video resources:
 
-## 6. USB Disk Mode
+## 7. USB Disk Mode
 
 USB disk mode shares the SD card with a computer as a USB drive. It is useful for quickly copying music, videos, background images, and other resources.
 
@@ -146,13 +154,13 @@ Tap the `USB Disk app` on the screen to enter USB-to-drive mode. Connect the dev
 
 **Regular video files need to be converted to a format suitable for playback on the BigSmart AI assistant, then placed in the `videos` directory. Use the repository [Video Converter](video-converter.md) for conversion.**
 
-## 7. Internet Radio
+## 8. Internet Radio
 
 Tap the `Radio app` to play internet radio stations.
 
 <p align="center"><img src="../../images/radio.png" alt="Internet radio" width="528"></p>
 
-## 8. Games
+## 9. Games
 
 Tap the `Games app` to play multiple games.
 
@@ -160,7 +168,7 @@ Tap the `Games app` to play multiple games.
 |-----------|-----------|
 | <img src="../../images/games.png" alt="Game list" width="530"> | <img src="../../images/maze.png" alt="Maze game" width="521"> |
 
-## 9. Extended Features
+## 10. Extended Features
 
 BigSmart firmware also registers local features and MCP tools:
 
@@ -171,7 +179,7 @@ BigSmart firmware also registers local features and MCP tools:
 | Smart home MQTT | Configure broker, connect, publish, subscribe, and control example devices |
 | Camera | GC0308 is lazily initialized when opening Camera or requesting camera capability for the first time |
 
-## 10. Troubleshooting
+## 11. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
@@ -187,7 +195,7 @@ BigSmart firmware also registers local features and MCP tools:
 | USB disk mode does not enter | Hold GPIO10 before startup/reset and make sure an SD card is inserted |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 11. Next Reading
+## 12. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)
