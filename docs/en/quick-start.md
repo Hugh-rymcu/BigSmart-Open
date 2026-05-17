@@ -2,7 +2,7 @@
 
 [中文](../zh/quick-start.md)
 
-This guide is written for the **RYMCU BigSmart AI assistant**. It helps users complete first boot, network setup, voice interaction, SD card resource preparation, music playback, video playback, and USB disk mode.
+This guide is written for the **RYMCU BigSmart AI assistant**. It helps users complete first boot, network setup, voice interaction, `SD` card resource preparation, music playback, video playback, and `USB` disk mode.
 
 For complete build, flashing, and hardware details, see the [User Manual](user-manual.md) and [Hardware Configuration](hardware.md).
 
@@ -10,24 +10,24 @@ For complete build, flashing, and hardware details, see the [User Manual](user-m
 
 ## 1. Firmware and Flashing
 
-BigSmart ships with the RYMCU official firmware preinstalled and can be used directly after power-on. To upgrade or switch firmware, see the [firmware flashing guide](../../firmware/README.en.md).
+`BigSmart` ships with the `RYMCU` official firmware preinstalled and can be used directly after power-on. To upgrade or switch firmware, see the [firmware flashing guide](../../firmware/README.en.md).
 
-The firmware images in this repository are merged images. When using a flashing tool, write the image to Flash offset `0x0`.
+The firmware images in this repository are merged images. When using a flashing tool, write the image to `Flash` offset `0x0`.
 
 ## 2. Power On and Home Screen
 
 ### 2.1 Power On
 
-1. Hold the power button for about 3 seconds.
-2. If the battery is low, connect the board to a computer or 5 V power supply with a USB Type-C data cable.
-3. After the screen turns on, the Home screen appears and shows `rymcu-bigsmart` and the current firmware version.
-4. To view logs, connect to the corresponding COM port with a serial terminal.
+1. Hold the power button for about `3` seconds to power on. When powered on, hold it again to power off.
+2. If the battery is low, connect the board to a computer or `5V` power supply with a `USB Type-C` data cable.
+3. After the screen turns on, the `Home` screen appears and shows `rymcu-bigsmart` and the current firmware version.
+4. To view logs, connect to the corresponding `COM` port with a serial terminal.
 
 <p align="center"><img src="../../images/home.jpg" alt="BigSmart Home screen" width="1536"></p>
 
 ### 2.2 Home Screen and Apps
 
-Swipe left or right on the Home screen to switch app pages. Common apps include:
+Swipe left or right on the `Home` screen to switch app pages. Common apps include:
 
 | App | Purpose |
 |-----|---------|
@@ -48,9 +48,9 @@ Use the touch screen to open apps, go back, select files, and adjust settings.
 
 ## 3. Wi-Fi Setup
 
-Wi-Fi must be configured before first use. BigSmart supports three provisioning methods: on-screen setup, hotspot web setup, and WeChat mini program BLE setup. Choose any one of them.
+`Wi-Fi` must be configured before first use. `BigSmart` supports three provisioning methods: on-screen setup, hotspot web setup, and WeChat mini program BLE setup. Choose any one of them.
 
-Open the `Settings` app and enter the Wi-Fi settings page.
+Open the `Settings` app and enter the `Wi-Fi` settings page.
 
 <p align="center"><img src="../../images/network.png" alt="Wi-Fi settings entry" width="530"></p>
 
@@ -58,13 +58,13 @@ Open the `Settings` app and enter the Wi-Fi settings page.
 
 ### 3.1 On-screen Wi-Fi Setup
 
-Tap `Screen WiFi`, enter the Wi-Fi SSID and password, and tap `Connect`.
+Tap `Screen WiFi`, enter the `Wi-Fi` SSID and password, and tap `Connect`.
 
 <p align="center"><img src="../../images/screen.png" alt="On-screen Wi-Fi setup" width="537"></p>
 
 ### 3.2 Hotspot Web Setup
 
-Tap `Web Setup` to open hotspot provisioning. Connect your phone to the hotspot shown on the screen, such as `Xiaozhi-11F0`. The phone usually opens the setup page automatically; if not, open the browser page shown by the device and enter the Wi-Fi information manually.
+Tap `Web Setup` to open hotspot provisioning. Connect your phone to the hotspot shown on the screen, such as `Xiaozhi-11F0`. The phone usually opens the setup page automatically; if not, open the browser page shown by the device and enter the `Wi-Fi` information manually.
 
 <p align="center"><img src="../../images/hotpot.png" alt="Hotspot web setup" width="538"></p>
 
@@ -84,7 +84,7 @@ Mini program flow:
 
 ### 4.1 Service Provider Settings
 
-Before using the `xiaozhi` voice assistant, set the server address first. The screen configuration supports three service provider options, as shown below.
+Before using the `xiaozhi` voice assistant, set the server address first. The screen configuration supports three service provider options. Open the `Settings` app and tap `Advanced`, as shown below.
 
 <p align="center"><img src="../../images/advanced.png" alt="Advanced service settings" width="527"></p>
 
@@ -98,7 +98,7 @@ For first-time use, after entering the `Xiaozhi app`, the device screen shows an
 
 <p align="center"><img src="../../images/peidui.png" alt="Device binding code" width="531"></p>
 
-**Choose any one of the following three methods. The factory default is the first one.**
+**Choose any one of the following three methods. Make sure it matches the configured service provider. The factory default is the first one.**
 
 #### 4.2.1 RYMCU Official Server Verification-Code Binding
 
@@ -120,7 +120,15 @@ Bind the device according to your custom server.
 
 In addition, the `RYMCU` official server is open source and can be self-deployed if you have the required technical foundation. Server link: https://github.com/ruanrongman/IntelliConnect
 
-## 5. Music and Video Playback
+## 5. AI Assistant Usage
+
+**After `wifi` and server configuration are complete, tap the `xiaozhi app` on the screen to enter the AI assistant. After initialization finishes and the `idle` page appears, wake it by saying "Ni hao, Xiaozhi", or press the middle `boot` button to wake it.**
+
+| Idle page | Wakeup page |
+|-----------|-------------|
+| <img src="../../images/idle.png" alt="AI assistant idle page" width="391"> | <img src="../../images/wakeup.png" alt="AI assistant wakeup page" width="372"> |
+
+## 6. Music and Video Playback
 
 Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos from the `SD` card.
 
@@ -130,29 +138,27 @@ Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos
 
 **Copy `mp3` music and video files to the `music` and `videos` folders on the `SD` card in advance. See the next section for the operation method.**
 
-Use the repository [Video Converter](video-converter.md) to generate video resources:
+## 7. USB Disk Mode
 
-## 6. USB Disk Mode
-
-USB disk mode shares the SD card with a computer as a USB drive. It is useful for quickly copying music, videos, background images, and other resources.
+`USB` disk mode shares the `SD` card with a computer as a `USB` drive. It is useful for quickly copying music, videos, background images, and other resources.
 
 Enter USB disk mode:
 
-Tap the `USB Disk app` on the screen to enter USB-to-drive mode. Connect the device to a computer with a USB cable, and the computer will show the SD card as a USB drive.
+Tap the `USB Disk app` on the screen to enter `USB`-to-drive mode. Connect the device to a computer with a `USB` cable, and the computer will show the `SD` card as a `USB` drive.
 
 <p align="center"><img src="../../images/u-sd.png" alt="SD card folders in USB disk mode" width="378"></p>
 
-**Copy MP3 files to the `music` folder.**
+**Copy `MP3` files to the `music` folder.**
 
-**Regular video files need to be converted to a format suitable for playback on the BigSmart AI assistant, then placed in the `videos` directory. Use the repository [Video Converter](video-converter.md) for conversion.**
+**Regular video files need to be converted to a format suitable for playback on the `bigsmart AI` assistant, then placed in the `videos` directory. Use the repository [Video Converter](video-converter.md) for conversion.**
 
-## 7. Internet Radio
+## 8. Internet Radio
 
 Tap the `Radio app` to play internet radio stations.
 
 <p align="center"><img src="../../images/radio.png" alt="Internet radio" width="528"></p>
 
-## 8. Games
+## 9. Games
 
 Tap the `Games app` to play multiple games.
 
@@ -160,9 +166,9 @@ Tap the `Games app` to play multiple games.
 |-----------|-----------|
 | <img src="../../images/games.png" alt="Game list" width="530"> | <img src="../../images/maze.png" alt="Maze game" width="521"> |
 
-## 9. Extended Features
+## 10. Extended Features
 
-BigSmart firmware also registers local features and MCP tools:
+`BigSmart` firmware also registers local features and `MCP` tools:
 
 | Feature | Description |
 |---------|-------------|
@@ -171,7 +177,7 @@ BigSmart firmware also registers local features and MCP tools:
 | Smart home MQTT | Configure broker, connect, publish, subscribe, and control example devices |
 | Camera | GC0308 is lazily initialized when opening Camera or requesting camera capability for the first time |
 
-## 10. Troubleshooting
+## 11. Troubleshooting
 
 | Problem | Suggestion |
 |---------|------------|
@@ -187,7 +193,7 @@ BigSmart firmware also registers local features and MCP tools:
 | USB disk mode does not enter | Hold GPIO10 before startup/reset and make sure an SD card is inserted |
 | Voice recognition has echo | Double-click Boot while idle to toggle device-side AEC |
 
-## 11. Next Reading
+## 12. Next Reading
 
 - [Product Brief](product-brief.md)
 - [User Manual](user-manual.md)

@@ -85,6 +85,14 @@ BigSmart-Open/
 - [Espressif official firmware](firmware/espressif-brookesia-merged.bin)
 - [Firmware flashing guide](firmware/README.en.md)
 
+## Feature Showcase
+
+Tap the `Music app` and `Video app` on the screen to play `mp3` music and videos from the `SD` card.
+
+| Music Playback | Video Playback |
+|----------------|----------------|
+| <img src="images/music1.png" alt="Music playback screen" width="526"> | <img src="images/video1.png" alt="Video playback screen" width="537"> |
+
 ## License
 
 - **Personal DIY / non-commercial use**: licensed under [Apache-2.0](LICENSE).
